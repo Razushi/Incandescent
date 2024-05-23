@@ -47,7 +47,6 @@
     kitty # They put so much money into it, unfortunately made it better
     libreoffice # The FOSS office suite
     vscodium
-    kdePackages.kcalc
 
     # Misc software
     ffmpeg_6-full # The video converter 
