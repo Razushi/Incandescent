@@ -49,6 +49,9 @@
   services.displayManager.sddm.wayland.enable = true; # Do we need this now or something?
   services.desktopManager.plasma6.enable = true;
 
+  # Enable fstrim, really should be enabled by default.
+  services.fstrim.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
