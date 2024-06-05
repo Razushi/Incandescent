@@ -45,9 +45,13 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true; # Do we need this now or something?
-  services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true; # Do we need this now or something?
+  # services.desktopManager.plasma6.enable = true;
+
+  # Enable Gnome?!
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
