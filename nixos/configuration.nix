@@ -50,8 +50,8 @@
   # services.desktopManager.plasma6.enable = true;
 
   # Enable Gnome?!
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
