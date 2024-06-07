@@ -105,11 +105,10 @@
     du-dust # Dust, a rust written du replacement
     eza # Rust based ls alternative
     fd # Rust alternative to the find command
-    firefox
+    # firefox
     fzf # Great cl fuzzy finder in GO
     gcc # GNU Compiler Collection
     git
-    gnome.gnome-disk-utility # Great disk utility
     imv # Minimal Wayland image viewer
     mpv # The God of video / media players
     neovim # The new classic.
@@ -118,7 +117,6 @@
     starship # Terminal prompt written in Rust
     tldr # Community made, minimal man pages
     unar # The great archive tool
-    vim # The classic.
     wget
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
@@ -126,8 +124,14 @@
     zoxide # Rust alt to cd but smarter, integrates with yazi
 
     # Just for hyprland
+    hypridle
+    hyprlock
+    hyprpaper
     xdg-desktop-portal-hyprland # XDG portal for hyprland
     xdg-desktop-portal-gtk # Another XDG portal for hyprland
+    nwg-panel
+    nwg-drawer
+    onagre # PopOS app launcher
   ];
 
   fonts.packages = with pkgs; [
@@ -144,24 +148,21 @@
   #   enableSSHSupport = true;
   # };
 
-  # Because Plasma 6 broke Dolphin
-  programs.thunar.enable = true;
-
   # Gnome made us need this
-  programs.dconf.enable = true;
+  # programs.dconf.enable = true;
 
-  # Window manager
-  # programs.hyprland.enable = true;
+  # The great window manager
+  programs.hyprland.enable = true;
 
   # Thanks Gaben
   programs.gamemode.enable = true;
 
- # Tool to run unpatched binaries, may or may not use
- #
- # programs.nix-ld.enable = true;
- # programs.nix-ld.libraries = with pkgs; [
- #
- # ];
+  # Tool to run unpatched binaries, may or may not use
+  #
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #
+  # ];
 
   # Set shell to Fish
   programs.fish.enable = true;
@@ -187,8 +188,13 @@
     "2620:fe::fe"
   ];
 
-  # if you really want to have it set. Otherwise ignore it, hell if I know what the thing even does.
-  system.stateVersion = "23.05"; # Did you read the comment?
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "24.05"; # Did you read the comment?
 
   # Enables some "experimental" stuff, basically anything that's important but might change.
   # Enable the nix-command utility, a must have I'm told. Along with flakes, another prime pick.
