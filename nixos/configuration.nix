@@ -45,13 +45,8 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true; # Do we need this now or something?
-  # services.desktopManager.plasma6.enable = true;
-
-  # Enable Gnome?!
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
@@ -122,16 +117,6 @@
     xclip # Needed to copy to clipboard in terminal apps
     yazi # The Rust TUI file manager
     zoxide # Rust alt to cd but smarter, integrates with yazi
-
-    # Just for hyprland
-    hypridle
-    hyprlock
-    hyprpaper
-    xdg-desktop-portal-hyprland # XDG portal for hyprland
-    xdg-desktop-portal-gtk # Another XDG portal for hyprland
-    nwg-panel
-    nwg-drawer
-    onagre # PopOS app launcher
   ];
 
   fonts.packages = with pkgs; [
@@ -147,12 +132,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # Gnome made us need this
-  # programs.dconf.enable = true;
-
-  # The great window manager
-  programs.hyprland.enable = true;
 
   # Thanks Gaben
   programs.gamemode.enable = true;

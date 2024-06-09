@@ -59,6 +59,23 @@
   ];
 
 
+  # gtk.enable = true;
+  #
+  # gtk.cursorTheme.package = pkgs.bibata-cursors;
+  # gtk.cursorTheme.name = "Bibata-Modern-Classic";
+  #
+  # gtk.theme.package = pkgs.adw-gtk3;
+  # gtk.theme.name = "adw-gtk3-dark";
+  #
+  #
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   package = pkgs.bibata-cursors;
+  #   name = "Bibata-Modern-Classic";
+  #   size = 16;
+  # };
+
+
   # The bababooey number
   home.stateVersion = "24.05";
 
