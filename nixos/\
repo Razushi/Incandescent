@@ -119,9 +119,7 @@
     zoxide # Rust alt to cd but smarter, integrates with yazi
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
     kdePackages.qtimageformats # Webp previews
-    kdePackages.kcolorpicker
     fdupes # Find dupe files
-    p7zip # This should just be a dependency smh
   ];
 
   fonts.packages = with pkgs; [
@@ -137,8 +135,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  
-  programs.gnome-disks.enable = true;
 
   # Thanks Gaben
   programs.gamemode.enable = true;
