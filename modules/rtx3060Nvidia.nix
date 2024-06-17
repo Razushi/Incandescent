@@ -1,9 +1,14 @@
 # Module for nvidia configs on the desktop RTX 3060
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
 
   options = {
-    desktop3060.enable =
-      lib.mkEnableOption "Enables 3060 configs";
+    desktop3060.enable = lib.mkEnableOption "Enables 3060 configs";
   };
   config = lib.mkIf config.desktop3060.enable {
     # Enable OpenGL
@@ -14,7 +19,7 @@
     };
 
     # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
 

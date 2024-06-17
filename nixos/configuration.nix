@@ -2,18 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, lib, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   # Why didn't I set this sooner
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -77,7 +83,6 @@
   # Enable bluetooth support
   hardware.bluetooth.enable = true;
 
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -85,46 +90,82 @@
   users.users.scythe = {
     isNormalUser = true;
     description = "Scythe";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-     ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
+
+  # Enables Scythe's unfree list
+  scythesUnfree.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # firefox
     appimage-run # Tool for running appimages in NixOS
-    btop # Neat system monitor
     clang # C compiler
-    detox # Sanitizes filenames of special chars
+    gcc # GNU Compiler Collection
+    kdePackages.kcolorpicker
+    kdePackages.qtimageformats # Webp previews
+    nixfmt-rfc-style # Formatter for Nix
+    wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
+    xclip # Needed to copy to clipboard in terminal apps
+    xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
+    kitty # They put so much money into it, unfortunately made it better
+
+    # From the moment I understood the weakness of the GUI...
+    btop # Neat system monitor
     du-dust # Dust, a rust written du replacement
     eza # Rust based ls alternative
+    fastfetch # Neofetch but written in C and maintained
     fd # Rust alternative to the find command
-    # firefox
     fzf # Great cl fuzzy finder in GO
-    gcc # GNU Compiler Collection
     git
-    imv # Minimal Wayland image viewer
-    mpv # The God of video / media players
+    glow # Command line Markdown viewer
+    helix
+    imagemagick
     neovim # The new classic.
+    python3 # They put so much money into it, unfortunately made it better
     ripgrep # Rust based recursive line search tool
     smartmontools # Disk health monitoring stuff
     starship # Terminal prompt written in Rust
     tldr # Community made, minimal man pages
-    unar # The great archive tool
     wget
-    wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
-    xclip # Needed to copy to clipboard in terminal apps
-    yazi # The Rust TUI file manager
+    yt-dlp # Media downloader for many sites
     zoxide # Rust alt to cd but smarter, integrates with yazi
-    xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
-    kdePackages.qtimageformats # Webp previews
-    kdePackages.kcolorpicker
+
+    # File management
+    detox # Sanitizes filenames of special chars
     fdupes # Find dupe files
     p7zip # This should just be a dependency smh
+    unar # The great archive tool
+    yazi # The Rust TUI file manager
+
+    # Media Apps
+    ffmpeg_6-full # The video converter
+    imv # Minimal Wayland image viewer
+    inkscape
+    mpv # The God of video / media players
+    obs-studio
+    pandoc # Ultimate Document converter
+    tauon # Music player
+    texlive.combined.scheme-full # Needed by pandoc & others to convert to PDF
+    zathura # The PDF viewer
+
+    # Misc software
+    jetbrains.idea-community # The Java IDE
+    keepassxc
+    libreoffice # The FOSS office suite
+    lua-language-server # Lua LSP
+    marksman # A nice Markdown LSP
+    nil # Nix lsp, RIP rnix dev
+    temurin-bin-17 # 2024 and we still can't include these things in-app
+    vscodium
   ];
 
   fonts.packages = with pkgs; [
@@ -133,14 +174,6 @@
     noto-fonts-emoji
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-  
   programs.gnome-disks.enable = true;
 
   # Thanks Gaben
@@ -158,12 +191,13 @@
   users.defaultUserShell = pkgs.fish;
 
   # List services that you want to enable:
-  
+
   # Enable GVfs for file managers like Thunar and other tools
   # services.gvfs.enable = true;
-  
+
   # Enable Flatpak globally
   services.flatpak.enable = true;
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
@@ -187,8 +221,11 @@
 
   # Enables some "experimental" stuff, basically anything that's important but might change.
   # Enable the nix-command utility, a must have I'm told. Along with flakes, another prime pick.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
