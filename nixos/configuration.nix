@@ -154,11 +154,11 @@
     obs-studio
     pandoc # Ultimate Document converter
     tauon # Music player
-    texlive.combined.scheme-full # Needed by pandoc & others to convert to PDF
+    texliveFull # Needed by pandoc & others to convert to PDF
     zathura # The PDF viewer
 
     # Misc software
-    jetbrains.idea-community # The Java IDE
+    jetbrains.idea-community-bin # The Java IDE
     keepassxc
     libreoffice # The FOSS office suite
     lua-language-server # Lua LSP
