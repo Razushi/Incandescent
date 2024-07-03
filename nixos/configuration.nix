@@ -117,6 +117,7 @@
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
     kitty # They put so much money into it, unfortunately made it better
+    gnome.nautilus
 
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor

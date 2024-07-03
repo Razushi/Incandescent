@@ -30,6 +30,11 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     davinci-resolve
+    openai-whisper-cpp
+    openai-whisper
+    pika-backup
+    # ardour
+    # lsp-plugins
   ];
 
   # gtk.enable = true;

@@ -11,11 +11,9 @@
     desktop3060.enable = lib.mkEnableOption "Enables 3060 configs";
   };
   config = lib.mkIf config.desktop3060.enable {
-    # Enable OpenGL
-    hardware.opengl = {
+    # Enable OpenGL - they renamed it from opengl to graphics, does it do something else?
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
     };
 
     # Load nvidia driver for Xorg and Wayland
