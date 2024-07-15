@@ -32,8 +32,10 @@
     davinci-resolve
     openai-whisper
     openai-whisper-cpp
+    cudaPackages.cudatoolkit
     pika-backup
-    whisper-ctranslate2
+    # python312Packages.tensorflow-bin
+    # whisper-ctranslate2
     # ardour
     # lsp-plugins
   ];

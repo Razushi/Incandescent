@@ -86,6 +86,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  nix.settings = {
+    substituters = [
+      "https://cuda-maintainers.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.scythe = {
     isNormalUser = true;
@@ -98,10 +107,10 @@
   };
 
   # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   # Enables Scythe's unfree list
-  scythesUnfree.enable = true;
+  # scythesUnfree.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
