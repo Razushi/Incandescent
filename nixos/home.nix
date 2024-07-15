@@ -30,9 +30,10 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     davinci-resolve
-    openai-whisper-cpp
     openai-whisper
+    openai-whisper-cpp
     pika-backup
+    whisper-ctranslate2
     # ardour
     # lsp-plugins
   ];
