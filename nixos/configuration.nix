@@ -60,6 +60,7 @@
   # Enable configs for desktop RTX3060
   desktop3060.enable = true;
 
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -70,7 +71,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -87,13 +87,13 @@
   # services.xserver.libinput.enable = true;
 
   nix.settings = {
-  substituters = [
-    "https://cuda-maintainers.cachix.org"
-  ];
-  trusted-public-keys = [
-    "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-  ];
-};
+    substituters = [
+      "https://cuda-maintainers.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.scythe = {
@@ -108,6 +108,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Unleash the CUDA
+  nixpkgs.config.cudaSupport = true;
 
   # Enables Scythe's unfree list
   # scythesUnfree.enable = true;

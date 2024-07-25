@@ -37,7 +37,7 @@
     anytype
     android-tools
     # python312Packages.tensorflow-bin
-    whisper-ctranslate2
+    # whisper-ctranslate2
     # ardour
     # lsp-plugins
   ];
