@@ -30,9 +30,7 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     davinci-resolve
-    openai-whisper-cpp
-    openai-whisper
-    cudaPackages.cudatoolkit
+    # cudaPackages.cudatoolkit
     pika-backup
     anytype
     android-tools

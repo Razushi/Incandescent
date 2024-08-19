@@ -83,6 +83,14 @@
   # Enable bluetooth support
   hardware.bluetooth.enable = true;
 
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_25;
+
+  # NOTE Enables docker bababooey, not needed unless planning to use Nvidia in docker
+  hardware.nvidia-container-toolkit.enable = true;
+
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -102,6 +110,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = with pkgs; [ ];
   };
@@ -110,7 +119,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Unleash the CUDA
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
 
   # Enables Scythe's unfree list
   # scythesUnfree.enable = true;
@@ -144,7 +153,6 @@
     helix
     imagemagick
     neovim # The new classic.
-    python3 # They put so much money into it, unfortunately made it better
     ripgrep # Rust based recursive line search tool
     smartmontools # Disk health monitoring stuff
     starship # Terminal prompt written in Rust
@@ -161,7 +169,7 @@
     yazi # The Rust TUI file manager
 
     # Media Apps
-    ffmpeg_6-full # The video converter
+    ffmpeg # The video converter
     imv # Minimal Wayland image viewer
     inkscape
     mpv # The God of video / media players
@@ -189,9 +197,6 @@
   ];
 
   programs.gnome-disks.enable = true;
-
-  # Thanks Gaben
-  programs.gamemode.enable = true;
 
   # Tool to run unpatched binaries, may or may not use
   #
