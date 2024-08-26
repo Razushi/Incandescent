@@ -30,11 +30,11 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     davinci-resolve
-    # cudaPackages.cudatoolkit
+    kdePackages.kdenlive
+    vlc
     pika-backup
     anytype
     android-tools
-    conda
     # ardour
     # lsp-plugins
   ];

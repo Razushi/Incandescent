@@ -67,6 +67,29 @@
     variant = "";
   };
 
+  # Enable Kanata, keyboard remap program
+  services.kanata = {
+    enable = true;
+    keyboards.main.config = ''
+    (defsrc
+      caps
+      lmeta lalt
+    )
+
+    (defalias
+      esc2ctrl (tap-hold 0 160 esc lctrl)
+    )
+
+    (deflayer main
+      @esc2ctrl
+      lalt lmeta
+    )
+    '';
+    keyboards.main.devices = [
+      "/dev/input/by-id/usb-Keychron_Keychron_K6-event-kbd"
+    ];
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -175,7 +198,7 @@
     mpv # The God of video / media players
     obs-studio
     pandoc # Ultimate Document converter
-    tauon # Music player
+    # tauon # Music player
     texliveFull # Needed by pandoc & others to convert to PDF
     zathura # The PDF viewer
 
