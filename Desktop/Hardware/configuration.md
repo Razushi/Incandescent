@@ -6,12 +6,19 @@ As of 2024-08-30 2340:
 - STORAGE - 1TB NVME Samsung 970 EVO plus
 - STORAGE - 1TB NVME Samsung 970 EVO plus
 - STORAGE - 2TB SATA 
-- PSU - RM1000x  
+- PSU - RM1000x
 
-Ram is definitely going to be 64gb of DDR5 6000MHZ+ RAM. 
 
 ## Usecases:
 
-3D CAD, rendering, video editing, gaming.
+3D CAD, Rendering, Video Editing, Homelabs, Server, and Gaming.  
 
-Occassional homelabs and server. 
+
+## TBD:
+
+- Motherboard
+- CPU Cooler
+- Moniter
+
+
+
