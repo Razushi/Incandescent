@@ -1,4 +1,4 @@
-# Build
+## Build
 As of 2024-08-30 2340:
 - CPU - Ryzen 9 7900X3D
 - GPU - 4060 Ti (16GB)
@@ -6,19 +6,19 @@ As of 2024-08-30 2340:
 - STORAGE - 1TB NVME Samsung 970 EVO plus
 - STORAGE - 1TB NVME Samsung 970 EVO plus
 - STORAGE - 2TB SATA 
-- PSU - RM1000x
+- PSU - RM1000x Corsair
 
-
-## Usecases:
-
-3D CAD, Rendering, Video Editing, Homelabs, Server, and Gaming.  
-
-
-## TBD:
-
+### TBD:
 - Motherboard
 - CPU Cooler
 - Moniter
+
+### Usecases:
+3D CAD, Rendering, Video Editing, Homelabs, Server, and Gaming.  
+
+### Requirements:
+- AV1 Encoding
+- Motherboard has WIFI
 
 
 
