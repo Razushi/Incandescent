@@ -19,6 +19,6 @@ As of 2024-08-30 2340:
 ### Requirements:
 - AV1 Encoding
 - Motherboard has WIFI
-
+- Moniter has <=1 ms delay
 
 
