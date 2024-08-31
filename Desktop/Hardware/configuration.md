@@ -15,7 +15,7 @@ As of 2024-08-30 2340:
 - Moniter 
 
 ### Budget:
-$2500 AUD (~1900)
+$2500 AUD (~1700)
 
 ### Usecases:
 3D CAD, Rendering, Video Editing, Homelabs, Server, and Gaming.  
