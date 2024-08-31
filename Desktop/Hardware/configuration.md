@@ -22,6 +22,7 @@ $3000 AUD (~2025)
 
 ### Requirements:
 - AV1 Encoding
+- Cannot be a 20 series or Intel GPU
 - Motherboard has WIFI
 - Moniter has <=1 ms delay
 
