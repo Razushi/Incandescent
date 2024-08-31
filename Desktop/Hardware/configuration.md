@@ -7,11 +7,15 @@ As of 2024-08-30 2340:
 - STORAGE - 1TB NVME Samsung 970 EVO plus
 - STORAGE - 2TB SATA 
 - PSU - RM1000x Corsair
+- Case - H5 Flow (2024)
 
 ### TBD:
-- Motherboard
-- CPU Cooler
-- Moniter
+- Motherboard - WIFI access
+- CPU Cooler (AIO Temps/performance)
+- Moniter 
+
+### Budget:
+$2500 AUD (~1900)
 
 ### Usecases:
 3D CAD, Rendering, Video Editing, Homelabs, Server, and Gaming.  
