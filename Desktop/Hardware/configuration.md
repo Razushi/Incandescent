@@ -13,7 +13,7 @@ Only difference between Nvidia and AMD gpus is just access to raytracing and DLS
 
 ### CPU Cooler: Thermalright Phantom Spirit
 
-Air cooler > AIO because of reliability concerns, and PS isntead of PA becuase its just better. 
+Air cooler > AIO because of reliability concerns, and PS instead of PA becuase its just better. 
 
 ### PSU: Corsair RM1000x
 
@@ -34,7 +34,7 @@ As of 2024-08-30 2340:
 - Corsair RM1000x (2021) 1000 W 80+ Gold Certified Fully Modular ATX Power Supply
 
 ### Budget:
-$3000 AUD (~2025)
+$3000 AUD (~$2025 USD)
 
 ### Usecases:
 3D CAD, Rendering, Video Editing, Homelabs, Server, and Gaming.  
