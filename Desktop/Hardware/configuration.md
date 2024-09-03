@@ -22,52 +22,19 @@ I will not skimp out on what is the most important part of the build.
 ---
 
 # Build
-As of 2024-08-30 2340:
-- AMD Ryzen 9 7900X3D 4.4 GHz 12-Core Processor
-- Thermalright Phantom Spirit 120 SE ARGB 66.17 CFM CPU Cooler
-- MSI PRO B650-S WIFI ATX AM5 Motherboard
-- G.Skill Trident Z5 Neo RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory
-- Samsung 970 Evo Plus 1 TB M.2-2280 PCIe 3.0 X4 NVME Solid State Drive
-- Seagate Barracuda Compute 2 TB 3.5" 7200 RPM Internal Hard Drive
-- Gigabyte GAMING OC Radeon RX 7800 XT 16 GB Video Card
-- NZXT H5 Flow (2024) ATX Mid Tower Case
-- Corsair RM1000x (2021) 1000 W 80+ Gold Certified Fully Modular ATX Power Supply
+As of 2024-09-03 23:51
+- AMD Ryzen 9 7900X3D 4.4 GHz 12-Core Processor $688.77 	
+- Thermalright Phantom Spirit 120 SE ARGB 66.17 CFM CPU Cooler $59.00 	
+- MSI PRO B650-S WIFI ATX AM5 Motherboard $249.00 	
+- G.Skill Trident Z5 Neo RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory $344.00 	
+- Samsung 970 Evo Plus 1 TB M.2-2280 PCIe 3.0 X4 NVME Solid State Drive $0.00
+- Samsung 970 Evo Plus 1 TB M.2-2280 PCIe 3.0 X4 NVME Solid State Drive $0.00
+- Seagate Barracuda Compute 2 TB 3.5" 7200 RPM Internal Hard Drive $0.00
+- Gigabyte GAMING OC Radeon RX 7800 XT 16 GB Video Card $749.00 	
+- NZXT H5 Flow RGB (2023) ATX Mid Tower Case $149.00 	
+- Corsair RM1000x (2021) 1000 W 80+ Gold Certified Fully Modular ATX Power Supply $224.32 	
 
 ---
-
-- AMD Ryzen 9 7900X3D 4.4 GHz 12-Core Processor $688.77 	
-JW Computers
-	
-- Thermalright Phantom Spirit 120 SE ARGB 66.17 CFM CPU Cooler $59.00 	
-Centre Com
-	
-- MSI PRO B650-S WIFI ATX AM5 Motherboard $249.00 	
-BPC Technology
-	
-- G.Skill Trident Z5 Neo RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory $344.00 	
-I-Tech
-	
-- Samsung 970 Evo Plus 1 TB M.2-2280 PCIe 3.0 X4 NVME Solid State Drive $0.00 	
-Purchased 	
-
-- Samsung 970 Evo Plus 1 TB M.2-2280 PCIe 3.0 X4 NVME Solid State Drive $0.00 	
-Purchased 	
-
-- Seagate Barracuda Compute 2 TB 3.5" 7200 RPM Internal Hard Drive $0.00 	
-Purchased 	
-		
-- Gigabyte GAMING OC Radeon RX 7800 XT 16 GB Video Card $749.00 	
-MSY Technology
-	
-- NZXT H5 Flow RGB (2023) ATX Mid Tower Case $149.00 	
-Centre Com
-	
-- Corsair RM1000x (2021) 1000 W 80+ Gold Certified Fully Modular ATX Power Supply $224.32 	
-Amazon Australia
-	
-- NixOS
-
---- 
 
 ### Budget:
 $3000 AUD (~$2025 USD)
