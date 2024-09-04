@@ -9,3 +9,5 @@ Mic: HyperX SoloCast
 Wristrest: HyperX Wrist Rest
 
 External SSD: 500GB Samsung 970 Evo Plus + ROG Strix Arion
+
+Emotional Support: Himeko LC Acrylic Stand
