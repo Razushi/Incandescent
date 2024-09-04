@@ -30,7 +30,6 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     davinci-resolve
-    kdePackages.kdenlive
     vlc
     pika-backup
     anytype

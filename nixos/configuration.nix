@@ -21,7 +21,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Why didn't I set this sooner
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "stasisos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -77,7 +77,7 @@
     )
 
     (defalias
-      esc2ctrl (tap-hold 0 160 esc lctrl)
+      esc2ctrl (tap-hold 100 100 esc lctrl)
     )
 
     (deflayer main
