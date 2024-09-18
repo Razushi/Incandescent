@@ -7,8 +7,8 @@
 }:
 
 {
-  home.username = "scythe";
-  home.homeDirectory = "/home/scythe";
+  home.username = "razushi";
+  home.homeDirectory = "/home/razushi";
 
   imports = [ ];
 

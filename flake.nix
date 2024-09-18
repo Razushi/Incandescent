@@ -1,5 +1,5 @@
 {
-  description = "iced_scythe system flake";
+  description = "I've seen your kind, time and time again. Every fleeing man must be caught. Every secret must be unearthed.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -44,7 +44,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
-              home-manager.users.scythe = import ./nixos/home.nix;
+              home-manager.users.razushi = import ./nixos/home.nix;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
               }; # Passes inputs to home-manager

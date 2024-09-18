@@ -23,42 +23,52 @@
   # Why didn't I set this sooner
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "stasisos"; # Define your hostname.
+  networking.hostName = "IncandescentOS"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "Australia/Sydney";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_AU.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_ADDRESS = "en_AU.UTF-8";
+    LC_IDENTIFICATION = "en_AU.UTF-8";
+    LC_MEASUREMENT = "en_AU.UTF-8";
+    LC_MONETARY = "en_AU.UTF-8";
+    LC_NAME = "en_AU.UTF-8";
+    LC_NUMERIC = "en_AU.UTF-8";
+    LC_PAPER = "en_AU.UTF-8";
+    LC_TELEPHONE = "en_AU.UTF-8";
+    LC_TIME = "en_AU.UTF-8";
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+  # Enable GNOME
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
 
+  # Controls RGB
+  services.hardware.openrgb.enable = true;
+
   # Enable configs for desktop RTX3060
-  desktop3060.enable = true;
+  desktop3060.enable = false;
 
 
   # Configure keymap in X11
@@ -69,7 +79,7 @@
 
   # Enable Kanata, keyboard remap program
   services.kanata = {
-    enable = true;
+    enable = false;
     keyboards.main.config = ''
     (defsrc
       caps
@@ -77,7 +87,7 @@
     )
 
     (defalias
-      esc2ctrl (tap-hold 100 100 esc lctrl)
+      esc2ctrl (tap-hold 150 150 esc lctrl)
     )
 
     (deflayer main
@@ -127,9 +137,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.scythe = {
+  users.users.razushi = {
     isNormalUser = true;
-    description = "Scythe";
+    description = "Razushi";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -155,14 +165,15 @@
     appimage-run # Tool for running appimages in NixOS
     clang # C compiler
     gcc # GNU Compiler Collection
+    gnome-tweaks
+    gnumake
     kdePackages.kcolorpicker
     kdePackages.qtimageformats # Webp previews
+    kitty # They put so much money into it, unfortunately made it better
     nixfmt-rfc-style # Formatter for Nix
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
-    kitty # They put so much money into it, unfortunately made it better
-    gnome-tweaks
 
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor
