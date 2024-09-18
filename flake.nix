@@ -1,5 +1,5 @@
 {
-  description = "I've seen your kind, time and time again. Every fleeing man must be caught. Every secret must be unearthed.";
+  description = "I've seen your kind, time and time again. Every fleeting skill must be learnt. Every secret must be archived. Such is the conceit of the self-proclaimed bearer of intellect.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

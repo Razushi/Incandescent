@@ -123,10 +123,9 @@
   hardware.enableRedistributableFirmware = true;
 
   # OpenGL and Vulkan Support
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
-    vulkanSupport = true;
+    enable32Bit = true; # DriSupport
     extraPackages = with pkgs; [
       pkgs.mesa_drivers 
     ];
@@ -134,7 +133,8 @@
       pkgs.pkgsi686Linux.mesa
     ];
   };
- 
+  
+  # Docker, nuff said
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_25;
 
@@ -166,8 +166,8 @@
     packages = with pkgs; [ ];
   };
 
-  # Redundant, exists in flakes.nix 
-  # nixpkgs.config.allowUnfree = true;
+  # Technically redundant, already in flakes.nix, is needed.  
+  nixpkgs.config.allowUnfree = true;
 
   # Unleash the CUDA
   # nixpkgs.config.cudaSupport = true;
@@ -214,10 +214,9 @@
     zoxide # Rust alt to cd but smarter, integrates with yazi
 
     # Gaming
-    vulkan-tools # Utils like vulkaninfo
-    mesa_vulkan_drivers # drivers for AMD GPUs
+    vulkan-tools # 64-Bit vulkaninfo
+    pkgs.pkgsi686Linux.vulkan-tools # 32-bit vulkaninfo
     mesa-demos # Testing stuff, glxinfo
-    pkgs.pkgsi686Linux.vulkan-tools
     gamemode
     libstrangle
     mangohud
