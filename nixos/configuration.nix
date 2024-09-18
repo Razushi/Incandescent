@@ -116,25 +116,43 @@
   # Enable bluetooth support
   hardware.bluetooth.enable = true;
 
+  # Explicit firmware packages (Can't be too sure...)
+  boot.extraModulePackages = [ pkgs.linux-firmware ];
 
+  # Redistributable firmware for AMD GPU and CPU
+  hardware.enableRedistributableFirmware = true;
+
+  # OpenGL and Vulkan Support
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    vulkanSupport = true;
+    extraPackages = with pkgs; [
+      pkgs.mesa_drivers 
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      pkgs.pkgsi686Linux.mesa
+    ];
+  };
+ 
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_25;
 
-  # NOTE Enables docker bababooey, not needed unless planning to use Nvidia in docker
-  hardware.nvidia-container-toolkit.enable = true;
+  # Not needed for AMD GPU's)
+  # hardware.nvidia-container-toolkit.enable = true;
 
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  nix.settings = {
-    substituters = [
-      "https://cuda-maintainers.cachix.org"
-    ];
-    trusted-public-keys = [
-      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-    ];
-  };
+  #  nix.settings = {
+  #    substituters = [
+  #      "https://cuda-maintainers.cachix.org"
+  #    ];
+  #    trusted-public-keys = [
+  #      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+  #    ];
+  #  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.razushi = {
@@ -148,8 +166,8 @@
     packages = with pkgs; [ ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Redundant, exists in flakes.nix 
+  # nixpkgs.config.allowUnfree = true;
 
   # Unleash the CUDA
   # nixpkgs.config.cudaSupport = true;
@@ -194,6 +212,16 @@
     wget
     yt-dlp # Media downloader for many sites
     zoxide # Rust alt to cd but smarter, integrates with yazi
+
+    # Gaming
+    vulkan-tools # Utils like vulkaninfo
+    mesa_vulkan_drivers # drivers for AMD GPUs
+    mesa-demos # Testing stuff, glxinfo
+    pkgs.pkgsi686Linux.vulkan-tools
+    gamemode
+    libstrangle
+    mangohud
+    vkBasalt
 
     # File management
     detox # Sanitizes filenames of special chars
@@ -284,4 +312,12 @@
   # Enable ozone for chromium apps, aka wayland support
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  environment.variables = {
+    # Enables gamemode for supported games
+    LD_PRELOAD = "${pkgs.gamemode}/lib/libgamemodeauto.so";
+
+    # MangoHUD overlay
+    MANGOHUD = "1";
+    MANGOHUD_DLSYM = "1";
+  };
 }

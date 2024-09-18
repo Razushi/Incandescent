@@ -34,7 +34,7 @@
     {
       nixosConfigurations = {
         scythedNix = nixpkgs.lib.nixosSystem {
-          # specialArgs = { inherit inputs system; }; # Do I need this?
+          specialArgs = { inherit inputs system; }; # You do need this. "Makes inputs and system variables avaliable to configuration modules"
 
           modules = [
             ./nixos/configuration.nix
@@ -45,6 +45,7 @@
               home-manager.useUserPackages = true;
 
               home-manager.users.razushi = import ./nixos/home.nix;
+
               home-manager.extraSpecialArgs = {
                 inherit inputs;
               }; # Passes inputs to home-manager
