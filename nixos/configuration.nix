@@ -127,10 +127,10 @@
     enable = true;
     enable32Bit = true; # DriSupport
     extraPackages = with pkgs; [
-      pkgs.mesa_drivers 
+      pkgs.mesa.drivers # 64-Bit 
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
-      pkgs.pkgsi686Linux.mesa
+      pkgs.pkgsi686Linux.mesa # 32-Bit
     ];
   };
   
@@ -310,13 +310,4 @@
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  environment.variables = {
-    # Enables gamemode for supported games
-    LD_PRELOAD = "${pkgs.gamemode}/lib/libgamemodeauto.so";
-
-    # MangoHUD overlay
-    MANGOHUD = "1";
-    MANGOHUD_DLSYM = "1";
-  };
 }
