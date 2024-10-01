@@ -57,8 +57,12 @@
   # Enable GNOME
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = false;
+    displayManager = { 
+      gdm.wayland = false;
+      gdm.enable = false;
+      sddm.enable = true;
+    };
   };
 
   # Enable fstrim, really should be enabled by default.
@@ -191,7 +195,12 @@
     nixfmt-rfc-style # Formatter for Nix
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
-    xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
+    xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
+    hyprland 
+    wayland
+    wlroots
+    wayland-protocols
+    libseat
 
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor
@@ -249,6 +258,7 @@
     nil # Nix lsp, RIP rnix dev
     temurin-bin-17 # 2024 and we still can't include these things in-app
     vscodium
+
   ];
 
   fonts.packages = with pkgs; [
@@ -306,8 +316,20 @@
     "nix-command"
     "flakes"
   ];
-
+  
+  # Hyprland
+  programs.hyprland = {
+    enable = true;
+  };
+  
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    LIBSEAT_BACKEND = "logind";
+    XDG_SESSION_TYPE = "wayland";
+    NIXOS_OZONE_WL = "1";
+  };
+  
+  services.dbus.enable = true;
+
 }
