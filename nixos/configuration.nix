@@ -201,6 +201,9 @@
     wlroots
     wayland-protocols
     libseat
+    waybar
+    grim
+    slurp
 
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor
