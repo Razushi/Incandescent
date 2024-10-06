@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   inputs,
   config,
@@ -197,8 +193,9 @@
     nixfmt-rfc-style # Formatter for Nix
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
-    xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
-    
+    # xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
+    xdg-desktop-portal-hyprland
+
     # Hyprland
     hyprland 
     wayland
@@ -302,6 +299,12 @@
   # Enable Flatpak globally
   services.flatpak.enable = true;
 
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  xdg.portal.config = {
+    common.default = "hyprland";
+  };
+  
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
