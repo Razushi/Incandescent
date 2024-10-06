@@ -51,19 +51,21 @@
   # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = false;
   # services.desktopManager.plasma6.enable = true;
 
   # Enable GNOME
   services.xserver = {
-    enable = true;
+    enable = false;
     desktopManager.gnome.enable = false;
     displayManager = { 
       gdm.wayland = false;
       gdm.enable = false;
-      sddm.enable = true;
     };
   };
+
+  # Auto login
+  services.getty.autologinUser = "razushi";
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
@@ -196,14 +198,23 @@
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
+    
+    # Hyprland
     hyprland 
     wayland
     wlroots
     wayland-protocols
     libseat
     waybar
-    grim
-    slurp
+    grim # Screenshot | Screenshot functionality itself
+    slurp # Screenshot | Screenshot regions
+    jq # Screenshot | Parses JSON
+    libnotify # Screenshot | Notification 
+    hyprpicker # Screenshot | Freezes Screenshot
+    hypridle
+    hyprlock
+    hyprshot # Screenshot | Wrapper for grim/slurp
+    hyprpaper
 
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor
@@ -321,9 +332,9 @@
   ];
   
   # Hyprland
-  programs.hyprland = {
-    enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  # };
   
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support

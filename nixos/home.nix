@@ -59,4 +59,32 @@
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  systemd.user.services.hyprland = {
+    Unit = {
+     Description = "Hyprland Wayland Compositor";
+     After = [ "dbus.service" ];
+      Wants = [ "dbus.service" ];
+    };
+    Service = {     
+      ExecStart = "/run/current-system/sw/bin/Hyprland";
+      Restart = "on-failure";
+      Environment = [
+        "XDG_SESSION_TYPE=wayland"
+        "XDG_CURRENT_DESKTOP=hyprland"
+        "XDG_SESSION_DESKTOP=hyprland"
+        "XDG_RUNTIME_DIR=/run/user/%U"
+        "LIBSEAT_BACKEND=logind"
+      ];
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+
+  home.sessionVariables = {
+    LIBSEAT_BACKEND = "logind";
+    XDG_SESSION_TYPE = "wayland";
+  };
 }
