@@ -5,4 +5,4 @@ This will not see the light of day for quite a while.
 
 What do yo uthink?
 
-This shit is getting depreciated soon
+This shit is depreciated, in a week? 
