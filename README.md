@@ -10,3 +10,5 @@ This shit is depreciated, in a week?
 It is time. (After destiny 2 grind for the week)
 
 Test: Deg
+
+Test: Emperor
