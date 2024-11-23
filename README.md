@@ -12,3 +12,5 @@ It is time. (After destiny 2 grind for the week)
 Test: Deg
 
 Test: Emperor
+
+Test: UPLINK_VERIFY
