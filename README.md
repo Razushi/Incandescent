@@ -14,3 +14,5 @@ Test: Deg
 Test: Emperor
 
 Test: UPLINK_VERIFY
+
+Test: R4B1
