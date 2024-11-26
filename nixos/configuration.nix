@@ -72,7 +72,9 @@
   # Enable configs for desktop RTX3060
   desktop3060.enable = false;
 
-
+  # Hyprland config - courtesy of Scythe
+  hyprmisc.enable = true;
+  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -196,7 +198,9 @@
     # xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
     xdg-desktop-portal-hyprland
 
-    # Hyprland
+
+
+    # Hyprland - To be gone through, introduce basic modularisation tomorrow afternoon.
     hyprland 
     wayland
     wlroots
@@ -212,6 +216,8 @@
     hyprlock
     hyprshot # Screenshot | Wrapper for grim/slurp
     hyprpaper
+
+
 
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor
