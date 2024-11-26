@@ -3,16 +3,4 @@ Desktop. Will probably make it public eventually once I get back into the grove 
 
 This will not see the light of day for quite a while.
 
-What do yo uthink?
-
-This shit is depreciated, in a week? 
-
-It is time. (After destiny 2 grind for the week)
-
-Test: Deg
-
-Test: Emperor
-
-Test: UPLINK_VERIFY
-
-Test: R4B1
+This repo need's a really hefty rewrite 
