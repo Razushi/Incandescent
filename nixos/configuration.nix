@@ -10,6 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../modules/hyprland_stuff.nix 
   ];
 
   # Bootloader.
@@ -72,7 +73,7 @@
   # Enable configs for desktop RTX3060
   desktop3060.enable = false;
 
-  # Hyprland config - courtesy of Scythe
+  # Hyprland config extra
   hyprmisc.enable = true;
   
   # Configure keymap in X11
@@ -182,6 +183,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
     # firefox
     appimage-run # Tool for running appimages in NixOS
@@ -198,43 +200,22 @@
     # xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
     xdg-desktop-portal-hyprland
 
-
-
-    # Hyprland - To be gone through, introduce basic modularisation tomorrow afternoon.
-    hyprland 
-    wayland
-    wlroots
-    wayland-protocols
-    libseat
-    waybar
-    grim # Screenshot | Screenshot functionality itself
-    slurp # Screenshot | Screenshot regions
-    jq # Screenshot | Parses JSON
-    libnotify # Screenshot | Notification 
-    hyprpicker # Screenshot | Freezes Screenshot
-    hypridle
-    hyprlock
-    hyprshot # Screenshot | Wrapper for grim/slurp
-    hyprpaper
-
-
-
     # From the moment I understood the weakness of the GUI...
     btop # Neat system monitor
-    du-dust # Dust, a rust written du replacement
-    eza # Rust based ls alternative
+    du-dust # Dust, a rust-written du replacement
+    eza # Rust-based ls alternative
     fastfetch # Neofetch but written in C and maintained
     fd # Rust alternative to the find command
-    fzf # Great cl fuzzy finder in GO
+    fzf # Great CLI fuzzy finder in Go
     git
     glow # Command line Markdown viewer
     helix
     imagemagick
     neovim # The new classic.
-    ripgrep # Rust based recursive line search tool
+    ripgrep # Rust-based recursive line search tool
     smartmontools # Disk health monitoring stuff
     starship # Terminal prompt written in Rust
-    tldr # Community made, minimal man pages
+    tldr # Community-made, minimal man pages
     wget
     yt-dlp # Media downloader for many sites
     zoxide # Rust alt to cd but smarter, integrates with yazi
@@ -262,7 +243,6 @@
     mpv # The God of video / media players
     obs-studio
     pandoc # Ultimate Document converter
-    # tauon # Music player
     texliveFull # Needed by pandoc & others to convert to PDF
     zathura # The PDF viewer
 
@@ -272,11 +252,11 @@
     libreoffice # The FOSS office suite
     lua-language-server # Lua LSP
     marksman # A nice Markdown LSP
-    nil # Nix lsp, RIP rnix dev
+    nil # Nix LSP, RIP rnix dev
     temurin-bin-17 # 2024 and we still can't include these things in-app
     vscodium
-
   ];
+
 
   fonts.packages = with pkgs; [
     noto-fonts
