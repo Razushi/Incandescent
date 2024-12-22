@@ -44,25 +44,11 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = false;
-  # services.desktopManager.plasma6.enable = true;
-
-  # Enable GNOME
-  services.xserver = {
-    enable = false;
-    desktopManager.gnome.enable = false;
-    displayManager = { 
-      gdm.wayland = false;
-      gdm.enable = false;
-    };
-  };
-
-  # Auto login
-  services.getty.autologinUser = "razushi";
+  # Enable Plasma
+  services.xserver.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
