@@ -54,7 +54,7 @@
       swayimg
       nomacs
       ripdrag
-      gwenview
+      # gwenview
       # Dolphin stuff
       # kdePackages.dolphin
       # kdePackages.qtwayland

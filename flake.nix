@@ -5,10 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # @inputs passes all inputs through
@@ -16,7 +12,6 @@
     {
       self,
       nixpkgs,
-      home-manager,
       ...
     }@inputs:
     let
@@ -32,23 +27,12 @@
     in
     {
       nixosConfigurations = {
-        scythedNix = nixpkgs.lib.nixosSystem {
+        CinderedNix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs system; }; # You do need this. "Makes inputs and system variables avaliable to configuration modules"
 
           modules = [
             ./nixos/configuration.nix
             ./modules
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.users.razushi = import ./nixos/home.nix;
-
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              }; # Passes inputs to home-manager
-            }
           ];
         };
       };

@@ -1,1 +1,0 @@
-Currently, configuration.nix contains a majority of the things, there are modules over in ./modules and my config does need to be modularised, we can take advantage of lib.mkDefault and etc to carry it over between users or profiles. 

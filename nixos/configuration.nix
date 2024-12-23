@@ -10,7 +10,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../modules/hyprland_stuff.nix 
   ];
 
   # Bootloader.
@@ -18,9 +17,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Why didn't I set this sooner
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
 
-  networking.hostName = "IncandescentOS"; # Define your hostname.
+  networking.hostName = "Incandescent"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -66,29 +65,6 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
-  };
-
-  # Enable Kanata, keyboard remap program
-  services.kanata = {
-    enable = false;
-    keyboards.main.config = ''
-    (defsrc
-      caps
-      lmeta lalt
-    )
-
-    (defalias
-      esc2ctrl (tap-hold 150 150 esc lctrl)
-    )
-
-    (deflayer main
-      @esc2ctrl
-      lalt lmeta
-    )
-    '';
-    keyboards.main.devices = [
-      "/dev/input/by-id/usb-Keychron_Keychron_K6-event-kbd"
-    ];
   };
 
   # Enable CUPS to print documents.
@@ -178,7 +154,7 @@
     gnome-tweaks
     gnumake
     kdePackages.kcolorpicker
-    kdePackages.qtimageformats # Webp previews
+    # kdePackages.qtimageformats # Webp previews
     kitty # They put so much money into it, unfortunately made it better
     nixfmt-rfc-style # Formatter for Nix
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
@@ -253,7 +229,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
   ];
 
