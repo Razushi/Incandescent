@@ -46,8 +46,8 @@
 
   # Enable Plasma
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.
@@ -241,6 +241,13 @@
     nil # Nix LSP, RIP rnix dev
     temurin-bin-17 # 2024 and we still can't include these things in-app
     vscodium
+
+    # I'm somehow missing these utils? these should be default but ok. 
+    coreutils
+    gnugrep
+    gawk
+    findutils
+    procps
   ];
 
 

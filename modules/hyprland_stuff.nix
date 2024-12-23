@@ -43,7 +43,7 @@
       overskride
       font-awesome
       adwaita-icon-theme
-      kdePackages.qtstyleplugin-kvantum
+      # kdePackages.qtstyleplugin-kvantum
       dconf-editor
       playerctl
       anyrun
@@ -56,12 +56,12 @@
       ripdrag
       gwenview
       # Dolphin stuff
-      kdePackages.dolphin
-      kdePackages.qtwayland
-      kdePackages.qtsvg
-      kdePackages.breeze-icons
-      kdePackages.kservice
-      kdePackages.ark
+      # kdePackages.dolphin
+      # kdePackages.qtwayland
+      # kdePackages.qtsvg
+      # kdePackages.breeze-icons
+      # kdePackages.kservice
+      # kdePackages.ark
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
