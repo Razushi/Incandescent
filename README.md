@@ -1,8 +1,6 @@
-# Incandescent
-Desktop. Will probably make it public eventually once I get back into the grove of things. 
+# Incandescent - My Desktop.
 
-This will not see the light of day for quite a while.
-
-This repo need's a really hefty rewrite 
-
-Postgraduate courses? 
+To sync to Razushi/Aeternitas:
+```
+rsync -av --exclude `.git` ~/Aeternitas/Incandescent ~/Fuli
+``` 
