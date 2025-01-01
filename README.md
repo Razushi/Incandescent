@@ -10,3 +10,4 @@ This is essentially my homelabs and my research station.
 > Additionally: to verify which files will be copied (and excluded): `--dry-run` 
 
  
+Addendum: Main host. 
