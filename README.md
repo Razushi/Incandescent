@@ -11,3 +11,5 @@ This is essentially my homelabs and my research station.
 
  
 Addendum: Main host. 
+
+Chore: see siyuan intergration with WSL + flatpak, maybe I could just deadass use it there, that way I can just rysnc it to git and go on from there?
