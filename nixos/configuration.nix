@@ -1,3 +1,6 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
   config,
@@ -5,9 +8,7 @@
   pkgs-929116,
   lib,
   ...
-}:
-
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -20,7 +21,7 @@
   # Why didn't I set this sooner
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  networking.hostName = "Incandescent"; # Define your hostname.
+  networking.hostName = "IncandescentOS"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -44,25 +45,27 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
-  # Enable Plasma
+  # Enable the X11 windowing system.
   services.xserver.enable = true;
+
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
-  services.ratbagd.enable = true;
-  
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
+
+  # Why do gaming mice have such bad software
+  services.ratbagd.enable = true;
+
+  # Enables my nix-ld config with a bunch of pkgs
+  scythesNixld.enable = true;
 
   # Enable configs for desktop RTX3060
   desktop3060.enable = false;
 
-  # Enables my nix-ld config with a bunch of pkgs
-  scythesNixld.enable = true;
-  
-  # Hyprland config extra
+  # Enable Hyprland miscellanea
   hyprmisc.enable = true;
-  
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -73,7 +76,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -84,6 +87,24 @@
 
   # Enable bluetooth support
   hardware.bluetooth.enable = true;
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_25;
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+  
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.razushi = {
+    isNormalUser = true;
+    description = "Razushi";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
+    packages = with pkgs; [];
+  };
 
   # Explicit firmware packages (Can't be too sure...)
   boot.extraModulePackages = [ pkgs.linux-firmware ];
@@ -103,44 +124,11 @@
     ];
   };
   
-  # Docker, nuff said
-  virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_25;
-
-  # Not needed for AMD GPU's)
-  # hardware.nvidia-container-toolkit.enable = true;
-
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  #  nix.settings = {
-  #    substituters = [
-  #      "https://cuda-maintainers.cachix.org"
-  #    ];
-  #    trusted-public-keys = [
-  #      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-  #    ];
-  #  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.razushi = {
-    isNormalUser = true;
-    description = "Razushi";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    packages = with pkgs; [ ];
-  };
-
-  # Technically redundant, already in flakes.nix, is needed.  
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-
   environment.systemPackages = with pkgs; [
     # Stuff only Scythe needs
     pkgs-929116.davinci-resolve
@@ -148,7 +136,7 @@
     pika-backup
     piper # Gaming peripherals GUI
     vlc
-    
+
     # firefox
     appimage-run # Tool for running appimages in NixOS
     clang # C compiler
@@ -162,7 +150,6 @@
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
-
 
     # From the moment I understood the weakness of the GUI...
     bat # cat but better
@@ -188,29 +175,20 @@
     yt-dlp # Media downloader for many sites
     zoxide # Rust alt to cd but smarter, integrates with yazi
 
-    # Gaming
-    vulkan-tools # 64-Bit vulkaninfo
-    pkgs.pkgsi686Linux.vulkan-tools # 32-bit vulkaninfo
-    mesa-demos # Testing stuff, glxinfo
-    gamemode
-    libstrangle
-    mangohud
-    vkBasalt
-
     # File management
     detox # Sanitizes filenames of special chars
     fdupes # Find dupe files
-    p7zip # This should just be a dependency smh
+    p7zip-rar # This should just be a dependency smh
     unar # The great archive tool
     yazi # The Rust TUI file manager
 
     # Media Apps
     ffmpeg # The video converter
-    imv # Minimal Wayland image viewer
     inkscape
     mpv # The God of video / media players
     obs-studio
     pandoc # Ultimate Document converter
+    # tauon # Music player
     texliveFull # Needed by pandoc & others to convert to PDF
     zathura # The PDF viewer
 
@@ -226,15 +204,7 @@
     basedpyright # Python typechecker LSP
     temurin-bin-17 # 2024 and we still can't include these things in-app
     vscodium
-
-    # I'm somehow missing these utils? these should be default but ok. 
-    coreutils
-    gnugrep
-    gawk
-    findutils
-    procps
   ];
-
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -263,12 +233,6 @@
   # Enable Flatpak globally
   services.flatpak.enable = true;
 
-  # xdg.portal.enable = true;
-  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  # xdg.portal.config = {
-  #   common.default = "hyprland";
-  # };
-  
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
@@ -297,10 +261,8 @@
     "nix-command"
     "flakes"
   ];
-  
+
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }
