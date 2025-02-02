@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
-    ./rtx3060Nvidia.nix
-    ./unfreeList.nix
+    # ./rtx3060Nvidia.nix
     ./hyprland_stuff.nix
+    ./nixldEnable.nix
   ];
 }

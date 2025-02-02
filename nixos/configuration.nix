@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  pkgs-929116,
   lib,
   ...
 }:
@@ -17,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Why didn't I set this sooner
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "Incandescent"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -47,17 +48,18 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
+  services.ratbagd.enable = true;
+  
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
-
-  # Controls RGB
-  services.hardware.openrgb.enable = true;
 
   # Enable configs for desktop RTX3060
   desktop3060.enable = false;
 
+  # Enables my nix-ld config with a bunch of pkgs
+  scythesNixld.enable = true;
+  
   # Hyprland config extra
   hyprmisc.enable = true;
   
@@ -136,48 +138,52 @@
   # Technically redundant, already in flakes.nix, is needed.  
   nixpkgs.config.allowUnfree = true;
 
-  # Unleash the CUDA
-  # nixpkgs.config.cudaSupport = true;
-
-  # Enables Scythe's unfree list
-  # scythesUnfree.enable = true;
-
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
+    # Stuff only Scythe needs
+    pkgs-929116.davinci-resolve
+    kdePackages.kdenlive
+    pika-backup
+    piper # Gaming peripherals GUI
+    vlc
+    
     # firefox
     appimage-run # Tool for running appimages in NixOS
     clang # C compiler
     gcc # GNU Compiler Collection
-    gnome-tweaks
+    python3 # For scripts
+    glib
     gnumake
-    kdePackages.kcolorpicker
-    # kdePackages.qtimageformats # Webp previews
     kitty # They put so much money into it, unfortunately made it better
-    nixfmt-rfc-style # Formatter for Nix
+    ghostty
+    unzip # Used by some neovim stuff
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
-    # xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk Apps
-    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
+
 
     # From the moment I understood the weakness of the GUI...
+    bat # cat but better
     btop # Neat system monitor
-    du-dust # Dust, a rust-written du replacement
-    eza # Rust-based ls alternative
+    du-dust # Dust, a rust written du replacement
+    duf # Disk usage utility, a better 'df'
+    eza # Rust based ls alternative
     fastfetch # Neofetch but written in C and maintained
     fd # Rust alternative to the find command
-    fzf # Great CLI fuzzy finder in Go
+    fzf # Great cl fuzzy finder in GO
     git
     glow # Command line Markdown viewer
     helix
     imagemagick
+    jq # Parse json in the cli
     neovim # The new classic.
-    ripgrep # Rust-based recursive line search tool
+    ripdrag # Drag n drop, mainly for Yazi
+    ripgrep # Rust based recursive line search tool
     smartmontools # Disk health monitoring stuff
     starship # Terminal prompt written in Rust
-    tldr # Community-made, minimal man pages
+    tldr # Community made, minimal man pages
     wget
     yt-dlp # Media downloader for many sites
     zoxide # Rust alt to cd but smarter, integrates with yazi
@@ -213,8 +219,11 @@
     keepassxc
     libreoffice # The FOSS office suite
     lua-language-server # Lua LSP
-    marksman # A nice Markdown LSP
-    nil # Nix LSP, RIP rnix dev
+    markdown-oxide # A nice Markdown LSP
+    nil # Nix lsp, RIP rnix dev
+    alejandra # Nix formatter
+    harper # English grammar LSP
+    basedpyright # Python typechecker LSP
     temurin-bin-17 # 2024 and we still can't include these things in-app
     vscodium
 
@@ -254,11 +263,11 @@
   # Enable Flatpak globally
   services.flatpak.enable = true;
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  xdg.portal.config = {
-    common.default = "hyprland";
-  };
+  # xdg.portal.enable = true;
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  # xdg.portal.config = {
+  #   common.default = "hyprland";
+  # };
   
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -269,8 +278,8 @@
   # Enable the firewall.
   networking.firewall.enable = true;
   networking.nameservers = [
-    "9.9.9.9"
-    "2620:fe::fe"
+    "1.1.1.1"
+    "2606:4700:4700::1111"
   ];
   networking.networkmanager.dns = "none";
 
@@ -289,19 +298,9 @@
     "flakes"
   ];
   
-  # Hyprland
-  # programs.hyprland = {
-  #   enable = true;
-  # };
-  
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support
   environment.sessionVariables = {
-    LIBSEAT_BACKEND = "logind";
-    XDG_SESSION_TYPE = "wayland";
     NIXOS_OZONE_WL = "1";
   };
-  
-  services.dbus.enable = true;
-
 }

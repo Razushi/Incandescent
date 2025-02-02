@@ -10,61 +10,85 @@
   };
   config = lib.mkIf config.hyprmisc.enable {
     # Enable Hyprland
-    programs.hyprland.enable = true;
+    # programs.hyprland.enable = true;
 
-    # Enable gvfs for Thunar
-    services.gvfs.enable = true;
-    # tumbler for Thunar
-    services.tumbler.enable = true;
-    # Enable Thunar
-    programs.thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-        thunar-volman
-      ];
+    programs.niri.enable = true;
+
+    systemd = {
+      user.services.polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = ["graphical-session.target"];
+        wants = ["graphical-session.target"];
+        after = ["graphical-session.target"];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
     };
+
+    programs.thunar.enable = true;
+    programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman tumbler];
+
+    # Needed for most file managers
+    services.gvfs.enable = true;
 
     # Programs I use with Hyprland
     environment.systemPackages = with pkgs; [
-      hyprlock
-      hypridle
-      hyprpaper
-      hyprpicker
-      hyprcursor
-      grimblast
-      waybar
-      copyq
-      qt6ct
-      nwg-look
-      pavucontrol
-      networkmanagerapplet
-      overskride
-      font-awesome
-      adwaita-icon-theme
-      # kdePackages.qtstyleplugin-kvantum
-      dconf-editor
-      playerctl
+      # niri
+      xwayland-satellite
       anyrun
+      file-roller
+      copyq
+      dconf-editor
+      font-awesome
       fuzzel
+      grimblast
+      hyprcursor
+      hypridle
+      # hyprlandPlugins.hyprexpo # Hyprland plugins, requires some funny business
+      # hyprlandPlugins.hyprspace # Not compatible with 0.47.x yet
+      hyprlock
+      hyprpaper
+      hyprland-qtutils
+      hyprpicker
+      hyprpolkitagent # Needs the style package to be added
+      polkit_gnome # Replacement for now
       mako
-      hyprlandPlugins.hyprexpo # Hyprland plugins, requires some funny business
-      file-roller # For Thunar, but works by itself too
-      swayimg
+      networkmanagerapplet
       nomacs
-      ripdrag
-      # gwenview
-      # Dolphin stuff
-      # kdePackages.dolphin
-      # kdePackages.qtwayland
-      # kdePackages.qtsvg
-      # kdePackages.breeze-icons
-      # kdePackages.kservice
-      # kdePackages.ark
+      nwg-look
+      overskride
+      pavucontrol
+      playerctl
+      qt6ct
+      swappy
+      waybar
+
+      # KDE stuff, mostly Dolphin stuff
+      kdePackages.ark
+      kdePackages.breeze-icons
+      kdePackages.breeze-icons
+      kdePackages.dolphin
+      kdePackages.ffmpegthumbs
+      kdePackages.gwenview
+      kdePackages.kdegraphics-thumbnailers
+      kdePackages.kservice
+      kdePackages.okular
+      kdePackages.qtimageformats
+      kdePackages.qtstyleplugin-kvantum
+      kdePackages.qtsvg
+      kdePackages.qtwayland
+
+      # XFCE stuff
+      # xfce.xfce4-panel
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
-    environment.etc."hyprplugins/libhyprexpo".source = "${pkgs.hyprlandPlugins.hyprexpo}/lib/libhyprexpo.so";
+    # environment.etc."hyprplugins/libhyprexpo".source = "${pkgs.hyprlandPlugins.hyprexpo}/lib/libhyprexpo.so";
+    # environment.etc."hyprplugins/libhyprspace".source = "${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so";
   };
 }
