@@ -60,9 +60,6 @@
   # Enables my nix-ld config with a bunch of pkgs
   scythesNixld.enable = true;
 
-  # Enable configs for desktop RTX3060
-  desktop3060.enable = false;
-
   # Enable Hyprland miscellanea
   hyprmisc.enable = true;
 
@@ -93,7 +90,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.razushi = {
     isNormalUser = true;
@@ -107,7 +104,7 @@
   };
 
   # Explicit firmware packages (Can't be too sure...)
-  boot.extraModulePackages = [ pkgs.linux-firmware ];
+  boot.extraModulePackages = [pkgs.linux-firmware];
 
   # Redistributable firmware for AMD GPU and CPU
   hardware.enableRedistributableFirmware = true;
@@ -117,13 +114,13 @@
     enable = true;
     enable32Bit = true; # DriSupport
     extraPackages = with pkgs; [
-      pkgs.mesa.drivers # 64-Bit 
+      pkgs.mesa.drivers # 64-Bit
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       pkgs.pkgsi686Linux.mesa # 32-Bit
     ];
   };
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -204,12 +201,25 @@
     basedpyright # Python typechecker LSP
     temurin-bin-17 # 2024 and we still can't include these things in-app
     vscodium
+
+    # Gaming
+    vulkan-tools # 64-Bit vulkaninfo
+    pkgs.pkgsi686Linux.vulkan-tools # 32-bit vulkaninfo
+    mesa-demos # Testing stuff, glxinfo
+    gamemode
+    libstrangle
+    mangohud
+    vkBasalt
   ];
 
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    fira-code
+    atkinson-hyperlegible
+    aileron
+    geist-font
   ];
 
   programs.gnome-disks.enable = true;
@@ -226,9 +236,6 @@
   users.defaultUserShell = pkgs.fish;
 
   # List services that you want to enable:
-
-  # Enable GVfs for file managers like Thunar and other tools
-  # services.gvfs.enable = true;
 
   # Enable Flatpak globally
   services.flatpak.enable = true;

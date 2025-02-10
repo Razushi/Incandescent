@@ -10,9 +10,9 @@
   };
   config = lib.mkIf config.hyprmisc.enable {
     # Enable Hyprland
-    # programs.hyprland.enable = true;
+    programs.hyprland.enable = true;
 
-    programs.niri.enable = true;
+    # programs.niri.enable = true;
 
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 = {
@@ -70,7 +70,7 @@
 
       # KDE stuff, mostly Dolphin stuff
       kdePackages.ark
-      kdePackages.breeze-icons
+      kdePackages.breeze
       kdePackages.breeze-icons
       kdePackages.dolphin
       kdePackages.ffmpegthumbs
