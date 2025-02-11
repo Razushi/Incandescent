@@ -68,6 +68,9 @@
       swappy
       waybar
 
+      # Set GTK, I'm using it for cursors rn.
+      nwg-look
+
       # KDE stuff, mostly Dolphin stuff
       kdePackages.ark
       kdePackages.breeze

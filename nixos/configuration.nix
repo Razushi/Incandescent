@@ -178,6 +178,7 @@
     p7zip-rar # This should just be a dependency smh
     unar # The great archive tool
     yazi # The Rust TUI file manager
+    siyuan # My pkm of choice... mainly becuase I don't want to set up Neorg + ObsidianNo thanks.
 
     # Media Apps
     ffmpeg # The video converter
