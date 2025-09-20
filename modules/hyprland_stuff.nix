@@ -42,7 +42,10 @@
       xwayland-satellite
       anyrun
       file-roller
-      copyq
+
+      # copyq
+      clipse # swapped from copyq
+
       dconf-editor
       font-awesome
       fuzzel

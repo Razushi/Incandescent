@@ -147,6 +147,7 @@
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
+    gparted
 
     # From the moment I understood the weakness of the GUI...
     bat # cat but better
@@ -211,6 +212,9 @@
     libstrangle
     mangohud
     vkBasalt
+
+    android-tools
+    universal-android-debloater
   ];
 
   fonts.packages = with pkgs; [
