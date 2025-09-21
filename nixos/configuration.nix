@@ -19,7 +19,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Why didn't I set this sooner
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
   networking.hostName = "IncandescentOS"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -48,8 +48,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.xserver.displayManager.lightdm.enable = false;
+
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
@@ -57,11 +59,18 @@
   # Why do gaming mice have such bad software
   services.ratbagd.enable = true;
 
+  # AI bababooey.
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+  };
+
   # Enables my nix-ld config with a bunch of pkgs
   scythesNixld.enable = true;
-
   # Enable Hyprland miscellanea
   hyprmisc.enable = true;
+  # Tons of KDE bloat, tons.
+  kdeStuff.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -70,7 +79,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -90,6 +99,17 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  nix.settings = {
+    substituters = [
+      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.razushi = {
@@ -114,7 +134,7 @@
     enable = true;
     enable32Bit = true; # DriSupport
     extraPackages = with pkgs; [
-      pkgs.mesa.drivers # 64-Bit
+      mesa.drivers # 64-Bit
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       pkgs.pkgsi686Linux.mesa # 32-Bit
@@ -128,13 +148,36 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Stuff only Scythe needs
-    pkgs-929116.davinci-resolve
+    # pkgs-929116.davinci-resolve
+    davinci-resolve
+    blender
     kdePackages.kdenlive
     pika-backup
     piper # Gaming peripherals GUI
     vlc
 
-    # firefox
+    # Luarocks
+    lua51Packages.lua
+    lua51Packages.luarocks
+    luajitPackages.magick
+    strawberry
+    obsidian # Siyuan failed...
+    czkawka # Dupe file finder and cleaner
+
+    sqlite # For a neovim plugin, I'm not joking.
+    nodePackages.nodejs
+    android-tools
+    universal-android-debloater
+    hexyl
+    foxmarks
+    usbutils
+
+    borgbackup
+    libnotify # For easy notifications within scripts.
+    btrfs-progs
+
+    firefox # Free from sandboxing from flatpak
+
     appimage-run # Tool for running appimages in NixOS
     clang # C compiler
     gcc # GNU Compiler Collection
@@ -142,44 +185,47 @@
     glib
     gnumake
     kitty # They put so much money into it, unfortunately made it better
+    foot
     ghostty
     unzip # Used by some neovim stuff
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
-    gparted
+
+    gparted # Mhmmm...
 
     # From the moment I understood the weakness of the GUI...
-    bat # cat but better
-    btop # Neat system monitor
-    du-dust # Dust, a rust written du replacement
-    duf # Disk usage utility, a better 'df'
-    eza # Rust based ls alternative
-    fastfetch # Neofetch but written in C and maintained
-    fd # Rust alternative to the find command
-    fzf # Great cl fuzzy finder in GO
+    bat # cat but better.
+    btop # Neat system monitor.
+    du-dust # Dust, a rust written du replacement.
+    duf # Disk usage utility, a better 'df'.
+    eza # Rust based ls alternative.
+    fastfetch # Neofetch but written in C and maintained.
+    fd # Rust alternative to the find command.
+    fzf # Great cl fuzzy finder in GO.
     git
-    glow # Command line Markdown viewer
+    glow # Command line Markdown viewer.
     helix
     imagemagick
-    jq # Parse json in the cli
+    jq # Parse json in the cli.
     neovim # The new classic.
-    ripdrag # Drag n drop, mainly for Yazi
-    ripgrep # Rust based recursive line search tool
-    smartmontools # Disk health monitoring stuff
-    starship # Terminal prompt written in Rust
-    tldr # Community made, minimal man pages
+    parallel # GNU parallel, thread your commands.
+    ripdrag # Drag n drop, mainly for Yazi.
+    ripgrep # Rust based recursive line search tool.
+    smartmontools # Disk health monitoring stuff.
+    starship # Terminal prompt written in Rust.
+    tldr # Community made, minimal man pages.
     wget
-    yt-dlp # Media downloader for many sites
-    zoxide # Rust alt to cd but smarter, integrates with yazi
+    yt-dlp # Media downloader for many sites.
+    zoxide # Rust alt to cd but smarter, integrates with yazi.
 
     # File management
     detox # Sanitizes filenames of special chars
     fdupes # Find dupe files
-    p7zip-rar # This should just be a dependency smh
-    unar # The great archive tool
-    yazi # The Rust TUI file manager
-    siyuan # My pkm of choice... mainly becuase I don't want to set up Neorg + ObsidianNo thanks.
+    _7zz-rar # This should just be a dependency smh.
+    unar # The great archive tool.
+    yazi # The Rust TUI file manager.
+    sshfs # For remote filesystems, mounts over SSH.
 
     # Media Apps
     ffmpeg # The video converter
@@ -190,19 +236,30 @@
     # tauon # Music player
     texliveFull # Needed by pandoc & others to convert to PDF
     zathura # The PDF viewer
+    tesseract # OCR Engine
+    thunderbird
+    koreader
+    readest
+    mediainfo
 
     # Misc software
     jetbrains.idea-community-bin # The Java IDE
     keepassxc
-    libreoffice # The FOSS office suite
+    # libreoffice # The FOSS office suite, but just use teams
+    temurin-bin-17 # 2024 and we still can't include these things in-app
+    vscodium
+    oniux
+
+    # LSPs
     lua-language-server # Lua LSP
     markdown-oxide # A nice Markdown LSP
     nil # Nix lsp, RIP rnix dev
-    alejandra # Nix formatter
     harper # English grammar LSP
     basedpyright # Python typechecker LSP
-    temurin-bin-17 # 2024 and we still can't include these things in-app
-    vscodium
+
+    # formatters
+    alejandra # Nix formatter
+    nodePackages.prettier # formatter for a lot of things.
 
     # Gaming
     vulkan-tools # 64-Bit vulkaninfo
@@ -213,8 +270,32 @@
     mangohud
     vkBasalt
 
-    android-tools
-    universal-android-debloater
+    # Bababooey magic! Beware!
+    # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
+    (let
+      base = pkgs.appimageTools.defaultFhsEnvArgs;
+    in
+      pkgs.buildFHSEnv (base
+        // {
+          name = "fhs";
+          targetPkgs = pkgs:
+          # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
+          # lacking many basic packages needed by most software.
+          # Therefore, we need to add them manually.
+          #
+          # pkgs.appimageTools provides basic packages required by most software.
+            (base.targetPkgs pkgs)
+            ++ (
+              with pkgs; [
+                pkg-config
+                ncurses
+                # Feel free to add more packages here if needed.
+              ]
+            );
+          profile = "export FHS=1";
+          runScript = "bash";
+          extraOutputsToInstall = ["dev"];
+        }))
   ];
 
   fonts.packages = with pkgs; [
@@ -226,6 +307,8 @@
     aileron
     geist-font
   ];
+  # Fixes emojis in Firefox, idk why
+  fonts.fontconfig.useEmbeddedBitmaps = true;
 
   programs.gnome-disks.enable = true;
 
@@ -238,8 +321,6 @@
 
   # Set shell to Fish
   programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
-
   # List services that you want to enable:
 
   # Enable Flatpak globally
@@ -254,8 +335,8 @@
   # Enable the firewall.
   networking.firewall.enable = true;
   networking.nameservers = [
-    "1.1.1.1"
-    "2606:4700:4700::1111"
+    "9.9.9.9"
+    "2620:fe::fe"
   ];
   networking.networkmanager.dns = "none";
 

@@ -1,5 +1,6 @@
 # Bunch of hyprland related things
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -10,91 +11,62 @@
   };
   config = lib.mkIf config.hyprmisc.enable {
     # Enable Hyprland
-    programs.hyprland.enable = true;
-
-    # programs.niri.enable = true;
-
-    systemd = {
-      user.services.polkit-gnome-authentication-agent-1 = {
-        description = "polkit-gnome-authentication-agent-1";
-        wantedBy = ["graphical-session.target"];
-        wants = ["graphical-session.target"];
-        after = ["graphical-session.target"];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
-      };
+    programs.hyprland = {
+      enable = true;
+      withUWSM = false;
     };
 
+    programs.niri.enable = true;
+
     programs.thunar.enable = true;
-    programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman tumbler];
+    programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];
+
+    services.displayManager.gdm.enable = true;
 
     # Needed for most file managers
     services.gvfs.enable = true;
 
+    # Secret service called
+    # services.gnome.gnome-keyring.enable = true;
+
     # Programs I use with Hyprland
     environment.systemPackages = with pkgs; [
-      # niri
-      xwayland-satellite
-      anyrun
-      file-roller
-
-      # copyq
-      clipse # swapped from copyq
-
+      copyq
       dconf-editor
+      file-roller
       font-awesome
       fuzzel
       grimblast
       hyprcursor
       hypridle
-      # hyprlandPlugins.hyprexpo # Hyprland plugins, requires some funny business
-      # hyprlandPlugins.hyprspace # Not compatible with 0.47.x yet
+      hyprland-qtutils
       hyprlock
       hyprpaper
-      hyprland-qtutils
       hyprpicker
       hyprpolkitagent # Needs the style package to be added
-      polkit_gnome # Replacement for now
+      labwc
       mako
       networkmanagerapplet
-      nomacs
+      nomacs-qt6
+      nsxiv
       nwg-look
       overskride
       pavucontrol
       playerctl
       qt6ct
+      libsForQt5.qt5ct
       swappy
       waybar
-
-      # Set GTK, I'm using it for cursors rn.
-      nwg-look
-
-      # KDE stuff, mostly Dolphin stuff
-      kdePackages.ark
-      kdePackages.breeze
-      kdePackages.breeze-icons
-      kdePackages.dolphin
-      kdePackages.ffmpegthumbs
-      kdePackages.gwenview
-      kdePackages.kdegraphics-thumbnailers
-      kdePackages.kservice
-      kdePackages.okular
-      kdePackages.qtimageformats
-      kdePackages.qtstyleplugin-kvantum
-      kdePackages.qtsvg
-      kdePackages.qtwayland
-
-      # XFCE stuff
-      # xfce.xfce4-panel
+      xdg-desktop-portal-termfilechooser
+      xwayland-satellite
+      greybird # GTK theme, mainly for Thunar
+      elementary-xfce-icon-theme # Icon theme, for GTK
+      xfce.tumbler # For Thunar thumbnails
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
     # environment.etc."hyprplugins/libhyprexpo".source = "${pkgs.hyprlandPlugins.hyprexpo}/lib/libhyprexpo.so";
     # environment.etc."hyprplugins/libhyprspace".source = "${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so";
+    # environment.etc."hyprplugins/libhyprscrolling".source = "${pkgs.hyprlandPlugins.hyprscrolling}/lib/libhyprscrolling.so";
   };
 }
