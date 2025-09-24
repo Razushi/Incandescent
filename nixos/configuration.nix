@@ -21,7 +21,7 @@
   # Why didn't I set this sooner
   boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
-  networking.hostName = "IncandescentOS"; # Define your hostname.
+  networking.hostName = "Incandescent"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -74,6 +74,8 @@
   hyprmisc.enable = true;
   # Tons of KDE bloat, tons.
   kdeStuff.enable = true;
+  # Laptop stuff
+  laptop.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -98,10 +100,6 @@
   hardware.bluetooth.enable = true;
 
   virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_25;
-  virtualisation.waydroid.enable = true;
-  virtualisation.libvirtd.enable = true;
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
@@ -124,8 +122,6 @@
       "networkmanager"
       "wheel"
       "docker"
-      "libvirtd"
-      "kvm"
     ];
     packages = with pkgs; [];
   };
@@ -279,16 +275,6 @@
     libstrangle
     mangohud
     vkBasalt
-
-    # Laptop
-    thinkfan
-    gnome-boxes
-    qemu
-    qemu_kvm
-
-    wireshark
-    gns3-gui
-    gns3-server
 
     # Bababooey magic! Beware!
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
