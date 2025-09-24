@@ -50,8 +50,9 @@
 
   services.xserver.displayManager.lightdm.enable = false;
 
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
@@ -64,6 +65,8 @@
     enable = true;
     acceleration = "rocm";
   };
+
+  systemd.user.extraConfig = "DefaultTimeoutStopSec=10s";
 
   # Enables my nix-ld config with a bunch of pkgs
   scythesNixld.enable = true;
@@ -96,9 +99,11 @@
 
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_25;
+  virtualisation.waydroid.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   nix.settings = {
     substituters = [
@@ -119,6 +124,8 @@
       "networkmanager"
       "wheel"
       "docker"
+      "libvirtd"
+      "kvm"
     ];
     packages = with pkgs; [];
   };
@@ -128,6 +135,9 @@
 
   # Redistributable firmware for AMD GPU and CPU
   hardware.enableRedistributableFirmware = true;
+
+  # Ensure the AMDGPU driver is loaded
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # OpenGL and Vulkan Support
   hardware.graphics = {
@@ -270,6 +280,16 @@
     mangohud
     vkBasalt
 
+    # Laptop
+    thinkfan
+    gnome-boxes
+    qemu
+    qemu_kvm
+
+    wireshark
+    gns3-gui
+    gns3-server
+
     # Bababooey magic! Beware!
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (let
@@ -321,6 +341,7 @@
 
   # Set shell to Fish
   programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
   # List services that you want to enable:
 
   # Enable Flatpak globally

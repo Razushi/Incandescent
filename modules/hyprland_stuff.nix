@@ -21,7 +21,7 @@
     programs.thunar.enable = true;
     programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];
 
-    services.displayManager.gdm.enable = true;
+    # services.displayManager.gdm.enable = true;
 
     # Needed for most file managers
     services.gvfs.enable = true;
@@ -65,7 +65,7 @@
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
-    # environment.etc."hyprplugins/libhyprexpo".source = "${pkgs.hyprlandPlugins.hyprexpo}/lib/libhyprexpo.so";
+    environment.etc."hyprplugins/libhyprexpo".source = "${pkgs.hyprlandPlugins.hyprexpo}/lib/libhyprexpo.so";
     # environment.etc."hyprplugins/libhyprspace".source = "${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so";
     # environment.etc."hyprplugins/libhyprscrolling".source = "${pkgs.hyprlandPlugins.hyprscrolling}/lib/libhyprscrolling.so";
   };
