@@ -309,7 +309,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    nerd-font.jetbrains-mono # Because Nerdfonts, for the waybar, should just be a default tbh so here it is.
+    nerd-fonts.jetbrains-mono # Because Nerdfonts, for the waybar, should just be a default tbh so here it is.
     fira-code
     atkinson-hyperlegible
     aileron
