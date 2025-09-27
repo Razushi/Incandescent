@@ -1,9 +1,9 @@
 # modules/laptop.nix
-{ 
-  lib, 
-  pkgs, 
-  config, 
-  ... 
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }: {
   options = {
     laptop.enable = lib.mkEnableOption "Enable laptop-specific settings";
@@ -19,10 +19,11 @@
 
     # User groups for virtualization
     users.users.razushi = {
-      extraGroups = [ 
-        "libvirtd" 
-        "kvm" 
+      extraGroups = [
+        "libvirtd"
+        "kvm"
       ];
+    };
 
     environment.systemPackages = with pkgs; [
       # Laptop
@@ -36,4 +37,3 @@
     ];
   };
 }
-
