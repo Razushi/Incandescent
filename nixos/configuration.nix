@@ -210,6 +210,7 @@
     fd # Rust alternative to the find command.
     fzf # Great cl fuzzy finder in GO.
     git
+    git-lfs
     glow # Command line Markdown viewer.
     helix
     imagemagick
@@ -308,6 +309,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    nerd-font.jetbrains-mono # Because Nerdfonts, for the waybar, should just be a default tbh so here it is.
     fira-code
     atkinson-hyperlegible
     aileron
