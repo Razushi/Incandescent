@@ -1,4 +1,4 @@
-{
+﻿{
   description = "I've seen your kind, time and time again. Every fleeting skill must be learnt. Every secret must be archived. Such is the burden of the self-proclaimed bearer of intellect.";
 
   inputs = {
@@ -15,38 +15,33 @@
     # };
   };
 
-  # @inputs passes all inputs through
   outputs = {
     self,
     nixpkgs,
     nixpkgs-929116,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
+  } @ inputs:
+    let
+      system = "x86_64-linux";
+      inherit (nixpkgs.lib) nixosSystem;
 
-    pkgs = import nixpkgs {
-      inherit system;
-      # Capitalism baby
-      config = {
-        allowUnfree = true;
-      };
-    };
-  in {
-    nixosConfigurations = {
-      CinderedNix = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          pkgs-929116 = import nixpkgs-929116 {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          inherit inputs;
+      specialArgs = {
+        pkgs-929116 = import nixpkgs-929116 {
+          inherit system;
+          config.allowUnfree = true;
         };
+        inherit inputs;
+      };
 
-        modules = [
-          ./nixos/configuration.nix
-          ./modules
-        ];
+      mkHost = hostModule:
+        nixosSystem {
+          inherit system specialArgs;
+          modules = [hostModule];
+        };
+    in {
+      nixosConfigurations = {
+        incandescent = mkHost ./hosts/incandescent.nix;
+        solaris = mkHost ./hosts/solaris.nix;
       };
     };
-  };
 }

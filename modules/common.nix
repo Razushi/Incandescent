@@ -1,6 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Core system configuration shared by all hosts.
 {
   inputs,
   config,
@@ -10,8 +8,7 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./default.nix
   ];
 
   # Bootloader.
@@ -21,14 +18,8 @@
   # Why didn't I set this sooner
   boot.kernelPackages = pkgs.linuxPackages_xanmod;
 
-  networking.hostName = "Incandescent"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Australia/Sydney";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.UTF-8";
@@ -68,15 +59,6 @@
 
   systemd.user.extraConfig = "DefaultTimeoutStopSec=10s";
 
-  # Enables my nix-ld config with a bunch of pkgs
-  scythesNixld.enable = true;
-  # Enable Hyprland miscellanea
-  hyprmisc.enable = true;
-  # Tons of KDE bloat, tons.
-  kdeStuff.enable = true;
-  # Laptop stuff
-  laptop.enable = false;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -114,7 +96,7 @@
     ];
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with `passwd`.
   users.users.razushi = {
     isNormalUser = true;
     description = "Razushi";
@@ -197,7 +179,6 @@
     wl-clipboard # For terminal copy / paste # Switch to wl-clipboard-rs one day?
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
-
     gparted # Mhmmm...
 
     # From the moment I understood the weakness of the GUI...
@@ -254,7 +235,6 @@
     keepassxc
     # libreoffice # The FOSS office suite, but just use teams
     temurin-bin-17 # 2024 and we still can't include these things in-app
-    vscodium
     oniux
 
     # LSPs
@@ -286,11 +266,6 @@
         // {
           name = "fhs";
           targetPkgs = pkgs:
-          # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
-          # lacking many basic packages needed by most software.
-          # Therefore, we need to add them manually.
-          #
-          # pkgs.appimageTools provides basic packages required by most software.
             (base.targetPkgs pkgs)
             ++ (
               with pkgs; [
@@ -351,7 +326,7 @@
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It?s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
