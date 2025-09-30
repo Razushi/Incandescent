@@ -284,7 +284,11 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    nerd-fonts.jetbrains-mono # Because Nerdfonts, for the waybar, should just be a default tbh so here it is.
+
+    nerd-fonts.jetbrains-mono # Because Nerdfonts, for the waybar, should just be a default tbh so here it is
+    nerd-fonts.victor-mono
+    nerd-fonts.geist-mono
+
     fira-code
     atkinson-hyperlegible
     aileron
@@ -304,7 +308,6 @@
 
   # Set shell to Fish
   programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
   # List services that you want to enable:
 
   # Enable Flatpak globally
