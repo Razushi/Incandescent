@@ -293,6 +293,8 @@
     atkinson-hyperlegible
     aileron
     geist-font
+
+    maple-mono.NF-CN
   ];
   # Fixes emojis in Firefox, idk why
   fonts.fontconfig.useEmbeddedBitmaps = true;
