@@ -41,8 +41,11 @@
 
   services.xserver.displayManager.lightdm.enable = false;
 
+  # services.xserver.displayManager.gdm.enable = true;
+
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+
   services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.

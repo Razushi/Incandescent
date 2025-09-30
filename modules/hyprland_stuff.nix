@@ -21,8 +21,6 @@
     programs.thunar.enable = true;
     programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];
 
-    # services.displayManager.gdm.enable = true;
-
     # Needed for most file managers
     services.gvfs.enable = true;
 
