@@ -1,4 +1,4 @@
-{
+{ 
   description = "I've seen your kind, time and time again. Every fleeting skill must be learnt. Every secret must be archived. Such is the burden of the self-proclaimed bearer of intellect.";
 
   inputs = {

@@ -12,6 +12,7 @@
     virtualisation = {
       waydroid.enable = true;
       libvirtd.enable = true;
+      spiceUSBRedirection.enable = true;
     };
 
     # Touchpad (libinput)
@@ -34,6 +35,9 @@
       wireshark
       gns3-gui
       gns3-server
+      # kdePackages.krdc
+      # libsForQt5.krdc
+      dnsmasq
     ];
   };
 }
