@@ -12,9 +12,21 @@
     virtualisation = {
       waydroid.enable = true;
       libvirtd.enable = true;
-      spiceUSBRedirection.enable = true;
+      virtualbox.host.enable = true;
+      vmware.host.enable = true;
     };
 
+   virtualisation.libvirtd = {
+      # Enable TPM emulation (for Windows 11)
+      qemu = {
+        swtpm.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+  
+   # Enable USB redirection
+    virtualisation.spiceUSBRedirection.enable = true;
+ 
     # Touchpad (libinput)
     services.xserver.libinput.enable = true;
 
@@ -38,6 +50,7 @@
       # kdePackages.krdc
       # libsForQt5.krdc
       dnsmasq
+      vmware-workstation
     ];
   };
 }
