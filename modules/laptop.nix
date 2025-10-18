@@ -16,17 +16,17 @@
       vmware.host.enable = true;
     };
 
-   virtualisation.libvirtd = {
+    virtualisation.libvirtd = {
       # Enable TPM emulation (for Windows 11)
       qemu = {
-        swtpm.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        swtpm.enable = true;{
+        ovmf.packages = [pkgs.OVMFFull.fd];
       };
     };
-  
-   # Enable USB redirection
+
+    # Enable USB redirection
     virtualisation.spiceUSBRedirection.enable = true;
- 
+
     # Touchpad (libinput)
     services.xserver.libinput.enable = true;
 
@@ -51,6 +51,8 @@
       # libsForQt5.krdc
       dnsmasq
       vmware-workstation
+      iwd
+      kdePackages.krdp
     ];
   };
 }
