@@ -19,7 +19,6 @@
   virtualisation.libvirtd = {
     qemu = {
       swtpm.enable = true;
-      ovmf.packages = [ pkgs.OVMFFull.fd ];
     };
   };
 
@@ -27,7 +26,7 @@
     virtualisation.spiceUSBRedirection.enable = true;
 
     # Touchpad (libinput)
-    services.xserver.libinput.enable = true;
+    services.libinput.enable = true;
 
     # User groups for virtualization
     users.users.razushi = {

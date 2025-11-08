@@ -84,7 +84,7 @@
 
   virtualisation.docker.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   nix.settings = {
     substituters = [
@@ -187,7 +187,7 @@
     # From the moment I understood the weakness of the GUI...
     bat # cat but better.
     btop # Neat system monitor.
-    du-dust # Dust, a rust written du replacement.
+    dust # Dust, a rust written du replacement.
     duf # Disk usage utility, a better 'df'.
     eza # Rust based ls alternative.
     fastfetch # Neofetch but written in C and maintained.
@@ -261,7 +261,7 @@
     gamemode
     libstrangle
     mangohud
-    vkBasalt
+    vkbasalt
 
     # Bababooey magic! Beware!
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
@@ -289,7 +289,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
 
     nerd-fonts.jetbrains-mono # Because Nerdfonts, for the waybar, should just be a default tbh so here it is
     nerd-fonts.victor-mono

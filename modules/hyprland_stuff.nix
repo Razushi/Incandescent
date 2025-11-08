@@ -56,7 +56,7 @@
       overskride
       pavucontrol
       playerctl
-      qt6ct
+      qt6Packages.qt6ct
       libsForQt5.qt5ct
       swww # Wallpaper util
       swappy
