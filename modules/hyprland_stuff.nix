@@ -14,12 +14,16 @@
     programs.hyprland = {
       enable = true;
       withUWSM = false;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     programs.niri.enable = true;
 
     programs.thunar.enable = true;
     programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];
+
+    services.displayManager.gdm.enable = true;
 
     # Needed for most file managers
     services.gvfs.enable = true;
@@ -35,6 +39,7 @@
       font-awesome
       fuzzel
       grimblast
+      flameshot
       hyprcursor
       hypridle
       hyprland-qtutils
@@ -53,6 +58,7 @@
       playerctl
       qt6ct
       libsForQt5.qt5ct
+      swww # Wallpaper util
       swappy
       waybar
       xdg-desktop-portal-termfilechooser
@@ -60,11 +66,16 @@
       greybird # GTK theme, mainly for Thunar
       elementary-xfce-icon-theme # Icon theme, for GTK
       xfce.tumbler # For Thunar thumbnails
+      quickshell
+      inputs.dank-material-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.dms-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
-    environment.etc."hyprplugins/libhyprexpo".source = "${pkgs.hyprlandPlugins.hyprexpo}/lib/libhyprexpo.so";
+    environment.etc."hyprplugins/libhyprexpo".source =
+      "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo}/lib/libhyprexpo.so";
     # environment.etc."hyprplugins/libhyprspace".source = "${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so";
-    # environment.etc."hyprplugins/libhyprscrolling".source = "${pkgs.hyprlandPlugins.hyprscrolling}/lib/libhyprscrolling.so";
+    environment.etc."hyprplugins/libhyprscrolling".source =
+      "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling}/lib/libhyprscrolling.so";
   };
 }

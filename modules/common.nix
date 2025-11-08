@@ -9,6 +9,7 @@
 }: {
   imports = [
     ./default.nix
+    inputs.walker.nixosModules.default
   ];
 
   # Bootloader.
@@ -41,10 +42,7 @@
 
   services.xserver.displayManager.lightdm.enable = false;
 
-  # services.xserver.displayManager.gdm.enable = true;
-
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.gdm.enable = true;
 
   services.desktopManager.plasma6.enable = true;
 
@@ -139,12 +137,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Stuff only Scythe needs
-    # pkgs-929116.davinci-resolve
-    davinci-resolve
+    pkgs-929116.davinci-resolve
     blender
+    krita
     kdePackages.kdenlive
     pika-backup
     piper # Gaming peripherals GUI
+    oversteer # Wheel / pedal manager
     vlc
 
     # Luarocks
@@ -167,6 +166,7 @@
     libnotify # For easy notifications within scripts.
     btrfs-progs
 
+    brave
     firefox # Free from sandboxing from flatpak
 
     appimage-run # Tool for running appimages in NixOS
@@ -216,6 +216,7 @@
     _7zz-rar # This should just be a dependency smh.
     unar # The great archive tool.
     yazi # The Rust TUI file manager.
+    rclone # Multi-function remotes for mounts/backups.
     sshfs # For remote filesystems, mounts over SSH.
 
     # Media Apps
@@ -229,6 +230,7 @@
     zathura # The PDF viewer
     tesseract # OCR Engine
     thunderbird
+    foliate
     koreader
     readest
     mediainfo
@@ -238,6 +240,7 @@
     keepassxc
     # libreoffice # The FOSS office suite, but just use teams
     temurin-bin-17 # 2024 and we still can't include these things in-app
+    vscodium
     oniux
 
     # LSPs
@@ -303,6 +306,8 @@
   fonts.fontconfig.useEmbeddedBitmaps = true;
 
   programs.gnome-disks.enable = true;
+  programs.kdeconnect.enable = true;
+  programs.walker.enable = true;
 
   # Tool to run unpatched binaries, may or may not use
   #
@@ -327,8 +332,10 @@
   # Enable the firewall.
   networking.firewall.enable = true;
   networking.nameservers = [
-    "9.9.9.9"
-    "2620:fe::fe"
+    "1.1.1.2"
+    "1.0.0.2"
+    "2606:4700:4700::1112"
+    "2606:4700:4700::1002"
   ];
   networking.networkmanager.dns = "none";
 
