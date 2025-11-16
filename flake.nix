@@ -23,10 +23,21 @@
       inputs.elephant.follows = "elephant";
     };
 
+    # Great launcher, sadly react slop.
+    vicinae = {
+      url = "github:vicinaehq/vicinae?ref=v0.16.0&shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.51.1&shallow=1";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins?rev=81f6d1426537981fcbb921f8b5e470b1280ef8f3&shallow=1";
       inputs.hyprland.follows = "hyprland";
+    };
+
+    matugen = {
+      url = "github:InioX/matugen?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -38,6 +49,8 @@
     dms-cli,
     elephant,
     walker,
+    vicinae,
+    matugen,
     hyprland,
     hyprland-plugins,
     ...

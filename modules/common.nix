@@ -240,7 +240,6 @@
     keepassxc
     # libreoffice # The FOSS office suite, but just use teams
     temurin-bin-17 # 2024 and we still can't include these things in-app
-    vscodium
     oniux
 
     # LSPs
@@ -263,6 +262,10 @@
     mangohud
     vkbasalt
 
+    # Hm...
+    inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.matugen.packages.${system}.default
+
     # Bababooey magic! Beware!
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (let
@@ -283,7 +286,10 @@
           profile = "export FHS=1";
           runScript = "bash";
           extraOutputsToInstall = ["dev"];
-        }))
+        }
+      )
+    )
+
   ];
 
   fonts.packages = with pkgs; [
@@ -308,6 +314,7 @@
   programs.gnome-disks.enable = true;
   programs.kdeconnect.enable = true;
   programs.walker.enable = true;
+  programs.vscode.enable = true;
 
   # Tool to run unpatched binaries, may or may not use
   #
@@ -357,4 +364,19 @@
   # Some environment variables
   # Enable ozone for chromium apps, aka wayland support
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # For file-picker portals for every compositor becuase idk why but I need to boot into hyprland first so that niri.
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-kde
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+    ];
+    config.common.default = ["gtk"];
+    config.hyprland.default = ["hyprland" "gtk"];
+    config.niri.default = ["gnome" "gtk"];
+    config.plasma.default = ["kde" "gtk"];
+  };
 }

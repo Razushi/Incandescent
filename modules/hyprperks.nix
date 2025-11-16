@@ -34,11 +34,11 @@ in
     environment.systemPackages = lib.mkAfter (with pkgs; [
       adw-gtk3
       hyprpolkitagent
-      matugen
+      # matugen
       papirus-icon-theme
       psmisc
       quickshell
-      walker
+      # walker
       wallust
       qt6.qt5compat
       copyq

@@ -13,6 +13,5 @@
   hyprmisc.enable = true;
   hyprperks.enable = true;
   kdeStuff.enable = true;
-  codex.enable = true;
   laptop.enable = false;
 }
