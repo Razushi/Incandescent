@@ -123,7 +123,7 @@
     enable = true;
     enable32Bit = true; # DriSupport
     extraPackages = with pkgs; [
-      mesa.drivers # 64-Bit
+      mesa # 64-Bit
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       pkgs.pkgsi686Linux.mesa # 32-Bit
@@ -371,7 +371,7 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
-      pkgs.xdg-desktop-portal-kde
+      pkgs.kdePackages.xdg-desktop-portal-kde
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
     ];
     config.common.default = ["gtk"];
