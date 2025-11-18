@@ -1,4 +1,4 @@
-{ 
+{
   description = "I've seen your kind, time and time again. Every fleeting skill must be learnt. Every secret must be archived. Such is the burden of the self-proclaimed bearer of intellect.";
 
   inputs = {
@@ -8,6 +8,7 @@
     # Cry about it Blackmagic, I'm not paying for studio.
     nixpkgs-929116.url = "github:nixos/nixpkgs/929116e316068c7318c54eb4d827f7d9756d5e9c?shallow=1";
 
+    # DMS, even yalter uses it now...
     dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,13 +26,19 @@
 
     # Great launcher, sadly react slop.
     vicinae = {
-      url = "github:vicinaehq/vicinae?ref=v0.16.0&shallow=1";
+      url = "github:vicinaehq/vicinae?ref=v0.16.2&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # The great archives must be organized.
+    # tagstudio = {
+    #   url = "github:TagStudioDev/TagStudio?shallow=1";
+    #   inputs.nixpkgs.follows = "nixpkgs"; # Use the same package set as your flake.
+    # };
+
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.51.1&shallow=1";
     hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins?rev=81f6d1426537981fcbb921f8b5e470b1280ef8f3&shallow=1";
+      url = "github:hyprwm/hyprland-plugins?shallow=1";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -41,18 +48,17 @@
     };
   };
 
+  # @inputs passes all inputs through
   outputs = {
     self,
     nixpkgs,
     nixpkgs-929116,
-    dank-material-shell,
     dms-cli,
-    elephant,
-    walker,
+    dank-material-shell,
     vicinae,
-    matugen,
     hyprland,
-    hyprland-plugins,
+    walker,
+    matugen,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -78,3 +84,4 @@
     };
   };
 }
+

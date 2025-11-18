@@ -17,6 +17,7 @@
       kdePackages.breeze-icons
       kdePackages.breeze-icons
       kdePackages.dolphin
+      kdePackages.elisa
       kdePackages.ffmpegthumbs
       kdePackages.gwenview
       kdePackages.kbookmarks
@@ -55,6 +56,7 @@
       kdePackages.qtstyleplugin-kvantum
       kdePackages.qtsvg
       kdePackages.qtwayland
+      kdePackages.xdg-desktop-portal-kde
     ];
   };
 }

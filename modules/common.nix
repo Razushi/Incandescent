@@ -41,10 +41,10 @@
   services.xserver.enable = true;
 
   services.xserver.displayManager.lightdm.enable = false;
-
-  services.displayManager.gdm.enable = true;
-
+  
   services.desktopManager.plasma6.enable = true;
+
+  services.displayManager.defaultSession = "hyprland";
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
@@ -138,13 +138,15 @@
   environment.systemPackages = with pkgs; [
     # Stuff only Scythe needs
     pkgs-929116.davinci-resolve
+    inputs.vicinae.packages.${pkgs.system}.default
     blender
     krita
     kdePackages.kdenlive
     pika-backup
     piper # Gaming peripherals GUI
-    oversteer # Wheel / pedal manager
+    # oversteer # Wheel / pedal manager
     vlc
+    quickemu
 
     # Luarocks
     lua51Packages.lua
@@ -217,7 +219,6 @@
     unar # The great archive tool.
     yazi # The Rust TUI file manager.
     rclone # Multi-function remotes for mounts/backups.
-    sshfs # For remote filesystems, mounts over SSH.
 
     # Media Apps
     ffmpeg # The video converter
@@ -240,7 +241,9 @@
     keepassxc
     # libreoffice # The FOSS office suite, but just use teams
     temurin-bin-17 # 2024 and we still can't include these things in-app
+    vscode
     oniux
+    gnome-clocks
 
     # LSPs
     lua-language-server # Lua LSP
@@ -263,7 +266,6 @@
     vkbasalt
 
     # Hm...
-    inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.matugen.packages.${system}.default
 
     # Bababooey magic! Beware!
@@ -275,6 +277,11 @@
         // {
           name = "fhs";
           targetPkgs = pkgs:
+          # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
+          # lacking many basic packages needed by most software.
+          # Therefore, we need to add them manually.
+          #
+          # pkgs.appimageTools provides basic packages required by most software.
             (base.targetPkgs pkgs)
             ++ (
               with pkgs; [
@@ -314,17 +321,8 @@
   programs.gnome-disks.enable = true;
   programs.kdeconnect.enable = true;
   programs.walker.enable = true;
-  programs.vscode.enable = true;
-
-  # Tool to run unpatched binaries, may or may not use
-  #
-  # programs.nix-ld.enable = true;
-  # programs.nix-ld.libraries = with pkgs; [
-  #
-  # ];
-
-  # Set shell to Fish
   programs.fish.enable = true;
+  
   # List services that you want to enable:
 
   # Enable Flatpak globally
@@ -366,17 +364,16 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # For file-picker portals for every compositor becuase idk why but I need to boot into hyprland first so that niri.
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.kdePackages.xdg-desktop-portal-kde
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-    ];
-    config.common.default = ["gtk"];
-    config.hyprland.default = ["hyprland" "gtk"];
-    config.niri.default = ["gnome" "gtk"];
-    config.plasma.default = ["kde" "gtk"];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal-gnome
+  #     pkgs.kdePackages.xdg-desktop-portal-kde
+  #   ];
+  #   config.common.default = ["gtk"];
+  #   config.hyprland.default = ["hyprland" "gtk"];
+  #   config.niri.default = ["gnome" "gtk"];
+  #   config.plasma.default = ["kde" "gtk"];
+  # };
 }
