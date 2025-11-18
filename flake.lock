@@ -297,17 +297,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1761249285,
-        "narHash": "sha256-70dEwL5p3CB/00ODs2RHWUKTyafB+PF4Ld7IEMuO+no=",
+        "lastModified": 1763254333,
+        "narHash": "sha256-u1pRjMwSxb9Cj434lomk9r4NjTZxP7X1Xb5oIX70yZ8=",
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "81f6d1426537981fcbb921f8b5e470b1280ef8f3",
+        "rev": "a2bf2df93467d11918068d19372ed42ea6bdba61",
         "type": "github"
       },
       "original": {
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "81f6d1426537981fcbb921f8b5e470b1280ef8f3",
         "type": "github"
       }
     },
@@ -704,16 +703,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1761946267,
-        "narHash": "sha256-kZAef+/eQWHKiFvYw8fNxAFRgpX8Ms/+G0JFg5qP1sQ=",
+        "lastModified": 1762428243,
+        "narHash": "sha256-CNL45FJG8JAtFFbc8V8Hhf+RwZuWXFwz/v5E1yAi1bQ=",
         "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "748480762e71fc19548f81d800f8d17498e69632",
+        "rev": "b99015bc2870f9ad3139fab438ac68e3a0bbec0f",
         "type": "github"
       },
       "original": {
         "owner": "vicinaehq",
-        "ref": "v0.16.0",
+        "ref": "v0.16.2",
         "repo": "vicinae",
         "type": "github"
       }
