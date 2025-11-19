@@ -19,13 +19,13 @@
 ### Contents:
 ```
 Incandescent/
-├── hardware/               # Hardware-configuration.nix for my machines.
-├── hosts/                      # Hostname and module's import.
-├── modules/                # ... modules.
-│  ├── common.nix       # Imported, this is basically the normal configuration.nix
-│  ├── <module>.nix     # You can read each individual module...
-│  └── default.nix          # Tbh I don't like this but hey. 
-└── flake.nix                   # Flake inputs, we love flakes. 
+├── hardware/        # Hardware-configuration.nix for my machines.
+├── hosts/           # Hostname and module's import.
+├── modules/         # ... modules.
+│  ├── common.nix    # Imported, this is basically the normal configuration.nix
+│  ├── <module>.nix  # You can read each individual module...
+│  └── default.nix   # Tbh I don't like this but hey. 
+└── flake.nix        # Flake inputs, we love flakes. 
 ```
 
 Setup ocumentation located at: `Razushi/Anamnesis` & Dotfiles located at: `Razushi/Dotfiles`
