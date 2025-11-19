@@ -40,7 +40,7 @@
     enable = true;
     type = "fcitx5";
     fcitx5 = {
-      waylandFrontend = true;        # <- key change
+      waylandFrontend = true; 
       addons = with pkgs; [
         qt6Packages.fcitx5-chinese-addons
       ];
