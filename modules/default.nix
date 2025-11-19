@@ -6,6 +6,7 @@
   imports = [
     # ./rtx3060Nvidia.nix
     ./hyprland_stuff.nix
+    ./hyprperks.nix
     ./kde_stuff.nix
     ./nixldEnable.nix
     ./laptop.nix

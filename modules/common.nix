@@ -9,7 +9,6 @@
 }: {
   imports = [
     ./default.nix
-    inputs.walker.nixosModules.default
   ];
 
   # Bootloader.
@@ -41,10 +40,10 @@
   services.xserver.enable = true;
 
   services.xserver.displayManager.lightdm.enable = false;
-  
-  services.desktopManager.plasma6.enable = true;
 
-  services.displayManager.defaultSession = "hyprland";
+  services.displayManager.gdm.enable = true;
+
+  services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;
@@ -138,29 +137,18 @@
   environment.systemPackages = with pkgs; [
     # Stuff only Scythe needs
     pkgs-929116.davinci-resolve
-    inputs.vicinae.packages.${pkgs.system}.default
     blender
     krita
-    kdePackages.kdenlive
     pika-backup
     piper # Gaming peripherals GUI
-    # oversteer # Wheel / pedal manager
     vlc
-    quickemu
 
     # Luarocks
-    lua51Packages.lua
-    lua51Packages.luarocks
-    luajitPackages.magick
     strawberry
     obsidian # Siyuan failed...
     czkawka # Dupe file finder and cleaner
 
     sqlite # For a neovim plugin, I'm not joking.
-    nodePackages.nodejs
-    android-tools
-    universal-android-debloater
-    hexyl
     foxmarks
     usbutils
 
@@ -177,7 +165,6 @@
     python3 # For scripts
     glib
     gnumake
-    kitty # They put so much money into it, unfortunately made it better
     foot
     ghostty
     unzip # Used by some neovim stuff
@@ -197,11 +184,9 @@
     fzf # Great cl fuzzy finder in GO.
     git
     git-lfs
-    glow # Command line Markdown viewer.
     helix
     imagemagick
     jq # Parse json in the cli.
-    neovim # The new classic.
     parallel # GNU parallel, thread your commands.
     ripdrag # Drag n drop, mainly for Yazi.
     ripgrep # Rust based recursive line search tool.
@@ -225,25 +210,16 @@
     inkscape
     mpv # The God of video / media players
     obs-studio
-    pandoc # Ultimate Document converter
-    # tauon # Music player
-    texliveFull # Needed by pandoc & others to convert to PDF
     zathura # The PDF viewer
     tesseract # OCR Engine
-    thunderbird
     foliate
-    koreader
     readest
     mediainfo
 
     # Misc software
-    jetbrains.idea-community-bin # The Java IDE
     keepassxc
-    # libreoffice # The FOSS office suite, but just use teams
-    temurin-bin-17 # 2024 and we still can't include these things in-app
     vscode
     oniux
-    gnome-clocks
 
     # LSPs
     lua-language-server # Lua LSP
@@ -254,18 +230,13 @@
 
     # formatters
     alejandra # Nix formatter
-    nodePackages.prettier # formatter for a lot of things.
 
     # Gaming
-    vulkan-tools # 64-Bit vulkaninfo
-    pkgs.pkgsi686Linux.vulkan-tools # 32-bit vulkaninfo
-    mesa-demos # Testing stuff, glxinfo
-    gamemode
-    libstrangle
     mangohud
     vkbasalt
 
     # Hm...
+    inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.matugen.packages.${system}.default
 
     # Bababooey magic! Beware!
@@ -277,11 +248,6 @@
         // {
           name = "fhs";
           targetPkgs = pkgs:
-          # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
-          # lacking many basic packages needed by most software.
-          # Therefore, we need to add them manually.
-          #
-          # pkgs.appimageTools provides basic packages required by most software.
             (base.targetPkgs pkgs)
             ++ (
               with pkgs; [
@@ -320,9 +286,17 @@
 
   programs.gnome-disks.enable = true;
   programs.kdeconnect.enable = true;
-  programs.walker.enable = true;
+  # programs.vscode.enable = true;
+
+  # Tool to run unpatched binaries, may or may not use
+  #
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #
+  # ];
+
+  # Set shell to Fish
   programs.fish.enable = true;
-  
   # List services that you want to enable:
 
   # Enable Flatpak globally
@@ -363,13 +337,14 @@
   # Enable ozone for chromium apps, aka wayland support
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # For file-picker portals for every compositor becuase idk why but I need to boot into hyprland first so that niri.
+  # # For file-picker portals for every compositor becuase idk why but I need to boot into hyprland first so that niri.
   # xdg.portal = {
   #   enable = true;
   #   extraPortals = [
   #     pkgs.xdg-desktop-portal-gtk
   #     pkgs.xdg-desktop-portal-gnome
   #     pkgs.kdePackages.xdg-desktop-portal-kde
+  #     inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
   #   ];
   #   config.common.default = ["gtk"];
   #   config.hyprland.default = ["hyprland" "gtk"];

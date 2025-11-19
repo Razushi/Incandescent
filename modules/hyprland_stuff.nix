@@ -15,8 +15,6 @@
       enable = true;
       withUWSM = false;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     programs.niri.enable = true;
@@ -39,7 +37,6 @@
       font-awesome
       fuzzel
       grimblast
-      flameshot
       hyprcursor
       hypridle
       hyprland-qtutils
@@ -48,33 +45,34 @@
       hyprpicker
       hyprpolkitagent # Needs the style package to be added
       labwc
+      mako
       networkmanagerapplet
       nomacs-qt6
       nsxiv
-      nautilus # Needed for Niri file picker/chooser.
       nwg-look
       overskride
       pavucontrol
       playerctl
       qt6Packages.qt6ct
       libsForQt5.qt5ct
-      swappy
       swww # Wallpaper util
+      swappy
       waybar
       xdg-desktop-portal-termfilechooser
       xwayland-satellite
       greybird # GTK theme, mainly for Thunar
       elementary-xfce-icon-theme # Icon theme, for GTK
       xfce.tumbler # For Thunar thumbnails
-      # ----Dank Material Shell----
       quickshell
-      inputs.dank-material-shell.packages.x86_64-linux.default
-      inputs.dms-cli.packages.x86_64-linux.default # CLI for DankMaterialShell
+      inputs.dank-material-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.dms-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
-    environment.etc."hyprplugins/libhyprexpo".source = "${inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo}/lib/libhyprexpo.so";
+    environment.etc."hyprplugins/libhyprexpo".source =
+      "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo}/lib/libhyprexpo.so";
     # environment.etc."hyprplugins/libhyprspace".source = "${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so";
-    environment.etc."hyprplugins/libhyprscrolling".source = "${inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling}/lib/libhyprscrolling.so";
+    environment.etc."hyprplugins/libhyprscrolling".source =
+      "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling}/lib/libhyprscrolling.so";
   };
 }

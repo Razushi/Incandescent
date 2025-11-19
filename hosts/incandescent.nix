@@ -11,6 +11,7 @@
 
   scythesNixld.enable = true;
   hyprmisc.enable = true;
+  # hyprperks.enable = true;
   kdeStuff.enable = true;
   laptop.enable = false;
 }
