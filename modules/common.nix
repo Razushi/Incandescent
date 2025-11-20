@@ -215,7 +215,9 @@
     unar # The great archive tool.
     yazi # The Rust TUI file manager.
     rclone # Multi-function remotes for mounts/backups.
-
+    nautilus # Gotta have it for vscode by default... 
+    xdg-desktop-portal-termfilechooser # Testing it out now...
+    
     # Media Apps
     ffmpeg # The video converter
     inkscape
@@ -231,6 +233,7 @@
     keepassxc
     vscode
     oniux
+    openrgb-with-all-plugins
 
     # LSPs
     lua-language-server # Lua LSP
@@ -295,9 +298,17 @@
   # Fixes emojis in Firefox, idk why
   fonts.fontconfig.useEmbeddedBitmaps = true;
 
+  # Decent enough program
   programs.gnome-disks.enable = true;
+
+  # Yup... phone
   programs.kdeconnect.enable = true;
+
+  # Disabled because extension issues, somehow, grabbing it from just pkgs works better
   # programs.vscode.enable = true;
+
+  # RGB control. 
+  services.hardware.openrgb.enable = true;
 
   # Tool to run unpatched binaries, may or may not use
   #
@@ -308,7 +319,6 @@
 
   # Set shell to Fish
   programs.fish.enable = true;
-  # List services that you want to enable:
 
   # Enable Flatpak globally
   services.flatpak.enable = true;
