@@ -3,36 +3,53 @@
 > [!NOTE]
 > Let knowledge serve only man, and let that which does not remain in darkness.
 
+This Nix configuration is located at: `Razushi/Incandescent`, and my dotfiles exist at: `Razushi/Dotfiles`. Due to my nature / method of dotfiles setup, seperate explicit and more broader setup notes and scripts are located together in: `Razushi/Anamnesis`.
+
 <details>
 <summary>Environment details</summary>
-
-### Setup:
-- WM: Hyprland+Waybar / Niri+DMS / Plasma
-- Shell: Fish
-- Terminal: Ghostty
-- Editor: Helix + Vscode
-- Launcher: Vicinae
-- Browser: Firefox / Brave
-
+### Setup (overview)
+| Area     | Choice(s)                                 |
+| -------- | ----------------------------------------- |
+| WM/DM    | Hyprland + Waybar / Niri + DMS / Plasma   |
+| Shell    | Fish                                      |
+| Terminal | Ghostty                                   |
+| Editor   | Helix; VS Code                            |
+| Launcher | Vicinae                                   |
+| Browser  | Firefox; Brave                            |
 </details>
-
-### Contents:
-```
-Incandescent/
-├── hardware/        # Hardware-configuration.nix for my machines.
-├── hosts/           # Hostname and module's import.
-├── modules/         # ... modules.
-│  ├── common.nix    # Imported, this is basically the normal configuration.nix
-│  ├── <module>.nix  # You can read each individual module...
-│  └── default.nix   # Tbh I don't like this but hey. 
-└── flake.nix        # Flake inputs, we love flakes. 
-```
-
-Setup documentation located at: `Razushi/Anamnesis` & Dotfiles located at: `Razushi/Dotfiles`
 
 # Rebuild:
 > sudo nixos-rebuild $BUILD_OPTION --flake ~/Aeternitas/BRANCH/#HOSTNAME
+OR
+> cd <directory> && sudo nixos-rebuild $BUILD_OPTION --flake .#HOSTNAME
 
-Build option being either `Boot` (Reboot after to swap to new generation on a clean slate) or `Switch` to swap to new instance from current. 
 
 ### Showcase:
+
+![Niri + DMS](./Showcase-Niri-Conf.png)
+
+![Hyprland + Waybar](./Showcase-Hyprland-Conf.png)
+
+### Repo Structure:
+```
+Incandescent/
+├── hardware/
+├── hosts/
+├── modules/
+│  ├── common.nix
+│  ├── <module>.nix
+│  └── default.nix
+└── flake.nix
+```
+```
+common.nix/
+├── Bootloader
+├── Locale
+├── Display Manager
+├── User
+├── Drivers
+├── Environment System Packages
+│  └── Magic
+├── Fonts
+└── System Settings
+```
