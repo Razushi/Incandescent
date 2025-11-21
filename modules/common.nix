@@ -1,4 +1,4 @@
-# Core system configuration shared by all hosts.
+# Let knowledge serve only man, and let that which does not remain in darkness.
 {
   inputs,
   config,
@@ -183,6 +183,7 @@
     xclip # Needed to copy to clipboard in terminal apps
     xdg-desktop-portal-gtk # Needed for cursor in some flatpak gtk apps
     gparted # Mhmmm...
+    kitty # Hyprland defaults
 
     # From the moment I understood the weakness of the GUI...
     bat # cat but better.
