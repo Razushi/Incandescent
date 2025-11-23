@@ -36,16 +36,19 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
+  i18n.inputMethod.fcitx5.waylandFrontend = true;
+  
   i18n.inputMethod = {
-    enable = true;
     type = "fcitx5";
+    enable = true;
     fcitx5 = {
-      waylandFrontend = true; 
       addons = with pkgs; [
         qt6Packages.fcitx5-chinese-addons
+        fcitx5-mellow-themes
       ];
     };
   };
+
   
   # Enable the X11 windowing system.
   services.xserver.enable = true;
