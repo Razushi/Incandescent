@@ -2,6 +2,7 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
@@ -18,6 +19,12 @@
     };
 
     programs.niri.enable = true;
+    programs.niri.package = pkgs-unstable.niri;
+
+    programs.dankMaterialShell = {
+      enable = true;
+      quickshell.package = pkgs-unstable.quickshell;
+    };
 
     programs.thunar.enable = true;
     programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];

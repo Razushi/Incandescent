@@ -3,6 +3,7 @@
   inputs,
   config,
   pkgs,
+  pkgs-unstable,
   pkgs-929116,
   lib,
   ...
@@ -16,7 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Why didn't I set this sooner
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -156,6 +157,7 @@
     pika-backup
     piper # Gaming peripherals GUI
     vlc
+    pkgs-unstable.zed-editor
 
     # Luarocks
     strawberry
@@ -217,7 +219,7 @@
     fdupes # Find dupe files
     _7zz-rar # This should just be a dependency smh.
     unar # The great archive tool.
-    yazi # The Rust TUI file manager.
+    pkgs-unstable.yazi # The Rust TUI file manager.
     rclone # Multi-function remotes for mounts/backups.
     nautilus # Gotta have it for vscode by default... 
     xdg-desktop-portal-termfilechooser # Testing it out now...

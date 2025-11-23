@@ -2,19 +2,15 @@
   description = "I've seen your kind, time and time again. Every fleeting skill must be learnt. Every secret must be archived. Such is the burden of the self-proclaimed bearer of intellect.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable?shallow=1";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05?shallow=1";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable?shallow=1";
 
     # Cry about it Blackmagic, I'm not paying for studio.
     nixpkgs-929116.url = "github:nixos/nixpkgs/929116e316068c7318c54eb4d827f7d9756d5e9c?shallow=1";
 
-    dank-material-shell = {
+    dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dms-cli = {
-      url = "github:AvengeMedia/danklinux?shallow=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # Great launcher, sadly react slop.
@@ -38,6 +34,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     nixpkgs-929116,
     dank-material-shell,
     dms-cli,
@@ -52,6 +49,10 @@
 
     specialArgs = {
       pkgs-929116 = import nixpkgs-929116 {
+        inherit system;
+        config = {allowUnfree = true;};
+      };
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config = {allowUnfree = true;};
       };
