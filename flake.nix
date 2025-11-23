@@ -36,7 +36,7 @@
     nixpkgs,
     nixpkgs-unstable,
     nixpkgs-929116,
-    dank-material-shell,
+    dankMaterialShell,
     dms-cli,
     vicinae,
     matugen,

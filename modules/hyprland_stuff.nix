@@ -70,9 +70,6 @@
       greybird # GTK theme, mainly for Thunar
       elementary-xfce-icon-theme # Icon theme, for GTK
       xfce.tumbler # For Thunar thumbnails
-      quickshell
-      inputs.dank-material-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
-      inputs.dms-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
