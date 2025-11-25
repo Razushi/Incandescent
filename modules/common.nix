@@ -10,6 +10,7 @@
 }: {
   imports = [
     ./default.nix
+    inputs.dankMaterialShell.nixosModules.dankMaterialShell
   ];
 
   # Bootloader.
@@ -56,9 +57,8 @@
 
   services.xserver.displayManager.lightdm.enable = false;
 
-  services.displayManager.gdm.enable = true;
-
-  services.desktopManager.plasma6.enable = true;
+  # Getting rid of plasma for now becuase holy hell it's messing up the rest of my system
+  # services.desktopManager.plasma6.enable = true;
 
   # Enable fstrim, really should be enabled by default.
   services.fstrim.enable = true;

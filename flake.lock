@@ -33,20 +33,19 @@
         "type": "github"
       }
     },
-    "dank-material-shell": {
+    "dankMaterialShell": {
       "inputs": {
         "dgop": "dgop",
-        "dms-cli": "dms-cli",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1762581897,
-        "narHash": "sha256-hXv742gvLrKNDT+MqhpFXXf1bvxto1IRmFvpxwzdbaM=",
+        "lastModified": 1763931651,
+        "narHash": "sha256-461bfMXTgLyvuUyuOYd3gJ+Yb3mBu6WcSclSZSMKzwo=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "44a6cd88cda112992a5954b0e25ed90025d9c359",
+        "rev": "2a37028b6a4b8e2254818d6efdb39aa575c67cbb",
         "type": "github"
       },
       "original": {
@@ -58,7 +57,7 @@
     "dgop": {
       "inputs": {
         "nixpkgs": [
-          "dank-material-shell",
+          "dankMaterialShell",
           "nixpkgs"
         ]
       },
@@ -73,47 +72,6 @@
       "original": {
         "owner": "AvengeMedia",
         "repo": "dgop",
-        "type": "github"
-      }
-    },
-    "dms-cli": {
-      "inputs": {
-        "nixpkgs": [
-          "dank-material-shell",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762491516,
-        "narHash": "sha256-oGLH5Gje/p2Hc1kO3m8P5eAZ7JldBI30EmwzEET4cNU=",
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
-        "rev": "050cf28a2963a7698ed4759736fe5fe77eee7cc2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
-        "type": "github"
-      }
-    },
-    "dms-cli_2": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762582219,
-        "narHash": "sha256-z5ESLjvJl409Jw5+sTHn5syv9axee0TSuTA9pfJUlJw=",
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
-        "rev": "96a778f7ec9e250c3082f40e8bb73e1c7e089787",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
         "type": "github"
       }
     },
@@ -517,18 +475,34 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1762363567,
-        "narHash": "sha256-YRqMDEtSMbitIMj+JLpheSz0pwEr0Rmy5mC7myl17xs=",
+        "lastModified": 1763678758,
+        "narHash": "sha256-+hBiJ+kG5IoffUOdlANKFflTT5nO3FrrR2CA3178Y5s=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ae814fd3904b621d8ab97418f1d0f2eb0d3716f4",
+        "rev": "117cc7f94e8072499b0a7aa4c52084fa4e11cc9b",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1763622513,
+        "narHash": "sha256-1jQnuyu82FpiSxowrF/iFK6Toh9BYprfDqfs4BB+19M=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c58bc7f5459328e4afac201c5c4feb7c818d604b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -558,13 +532,13 @@
     },
     "root": {
       "inputs": {
-        "dank-material-shell": "dank-material-shell",
-        "dms-cli": "dms-cli_2",
+        "dankMaterialShell": "dankMaterialShell",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "matugen": "matugen",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-929116": "nixpkgs-929116",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "vicinae": "vicinae"
       }
     },

@@ -29,7 +29,7 @@
     programs.thunar.enable = true;
     programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];
 
-    services.displayManager.gdm.enable = true;
+    services.xserver.displayManager.gdm.enable = true;
 
     # Needed for most file managers
     services.gvfs.enable = true;
@@ -52,7 +52,7 @@
       hyprpicker
       hyprpolkitagent # Needs the style package to be added
       labwc
-      mako
+      # mako
       networkmanagerapplet
       nomacs-qt6
       nsxiv

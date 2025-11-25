@@ -37,7 +37,6 @@
     nixpkgs-unstable,
     nixpkgs-929116,
     dankMaterialShell,
-    dms-cli,
     vicinae,
     matugen,
     hyprland,
