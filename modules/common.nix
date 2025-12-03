@@ -129,6 +129,9 @@
   # Redistributable firmware for AMD GPU and CPU
   hardware.enableRedistributableFirmware = true;
 
+  # No idea how davinci worked before without this
+  hardware.amdgpu.opencl.enable = true;
+
   # Ensure the AMDGPU driver is loaded
   services.xserver.videoDrivers = ["amdgpu"];
 
