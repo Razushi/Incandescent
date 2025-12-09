@@ -5,6 +5,7 @@
   pkgs,
   pkgs-unstable,
   pkgs-929116,
+  zenPkgs,
   lib,
   ...
 }: {
@@ -261,6 +262,9 @@
     # Hm...
     inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.matugen.packages.${system}.default
+
+    # Zen.... flake specialArgs
+    zenPkgs.twilight
 
     # Bababooey magic! Beware!
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!

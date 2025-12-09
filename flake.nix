@@ -29,6 +29,11 @@
       url = "github:InioX/matugen?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {
@@ -55,6 +60,9 @@
         inherit system;
         config = {allowUnfree = true;};
       };
+      
+      zenPkgs = inputs.zen-browser.packages.${system};
+
       inherit inputs;
     };
 
