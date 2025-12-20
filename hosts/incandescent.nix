@@ -14,5 +14,5 @@
   # hyprperks.enable = true;
   kdeStuff.enable = true;
   laptop.enable = false;
-  ii.hypr.enable = true;
+  # ii.hypr.enable = true;
 }
