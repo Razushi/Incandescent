@@ -70,7 +70,7 @@
   # AI bababooey.
   services.ollama = {
     enable = true;
-    acceleration = "rocm";
+    package = pkgs.ollama-rocm;
   };
 
   systemd.user.extraConfig = "DefaultTimeoutStopSec=10s";
