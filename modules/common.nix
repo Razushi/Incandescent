@@ -4,14 +4,14 @@
   config,
   pkgs,
   pkgs-unstable,
-  pkgs-929116,
   zenPkgs,
   lib,
   ...
 }: {
   imports = [
     ./default.nix
-    inputs.dankMaterialShell.nixosModules.dankMaterialShell
+    inputs.dms.nixosModules.dank-material-shell
+    inputs.qtengine.nixosModules.default
   ];
 
   # Bootloader.
@@ -73,7 +73,7 @@
     package = pkgs.ollama-rocm;
   };
 
-  systemd.user.extraConfig = "DefaultTimeoutStopSec=10s";
+  systemd.user.settings.Manager.DefaultTimeoutStopSec = "10s";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -155,13 +155,14 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Stuff only Scythe needs
-    pkgs-929116.davinci-resolve
     blender
     krita
     pika-backup
     piper # Gaming peripherals GUI
     vlc
     pkgs-unstable.zed-editor
+    opencode
+    opencode-desktop
 
     # Luarocks
     strawberry
@@ -236,7 +237,6 @@
     zathura # The PDF viewer
     tesseract # OCR Engine
     foliate
-    readest
     mediainfo
 
     # Misc software
@@ -259,12 +259,11 @@
     mangohud
     vkbasalt
 
-    # Hm...
-    inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.matugen.packages.${system}.default
-
     # Zen.... flake specialArgs
     zenPkgs.twilight
+
+    # Icon themes...
+    papirus-icon-theme
 
     # Bababooey magic! Beware!
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!

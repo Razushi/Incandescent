@@ -14,9 +14,10 @@
       kdePackages.ark
       kdePackages.baloo
       kdePackages.baloo-widgets
-      kdePackages.breeze-icons
+      kdePackages.breeze
       kdePackages.breeze-icons
       kdePackages.dolphin
+      kdePackages.elisa
       kdePackages.ffmpegthumbs
       kdePackages.gwenview
       kdePackages.kbookmarks
@@ -39,8 +40,8 @@
       kdePackages.kjobwidgets
       kdePackages.knewstuff
       kdePackages.knotifications
+      kdePackages.konsole
       kdePackages.kparts
-      kdePackages.kservice
       kdePackages.kservice
       kdePackages.ktextwidgets
       kdePackages.kuserfeedback
@@ -52,9 +53,10 @@
       kdePackages.purpose
       kdePackages.qtbase
       kdePackages.qtimageformats
-      kdePackages.qtstyleplugin-kvantum
       kdePackages.qtsvg
       kdePackages.qtwayland
+      kdePackages.xdg-desktop-portal-kde
+      kdePackages.qtstyleplugin-kvantum
     ];
   };
 }

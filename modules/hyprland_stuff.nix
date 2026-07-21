@@ -16,18 +16,59 @@
       enable = true;
       withUWSM = false;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     programs.niri.enable = true;
     programs.niri.package = pkgs-unstable.niri;
 
-    programs.dankMaterialShell = {
+    programs.dank-material-shell = {
       enable = true;
-      quickshell.package = pkgs-unstable.quickshell;
+
+      systemd = {
+        enable = false;             # Systemd service for auto-start
+        restartIfChanged = false;   # Auto-restart dms.service when dms-shell changes
+      };
+      
+      # Core features
+      enableSystemMonitoring = false;     # System monitoring widgets (dgop)
+      enableVPN = false;                  # VPN management widget
+      enableDynamicTheming = false;       # Wallpaper-based theming (matugen)
+      enableAudioWavelength = false;      # Audio visualizer (cava)
+      enableCalendarEvents = false;       # Calendar integration (khal)
+      enableClipboardPaste = false;       # Pasting from the clipboard history (wtype)
     };
 
-    programs.thunar.enable = true;
-    programs.thunar.plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-media-tags-plugin];
+    programs.qtengine = {
+      enable = true;
+      
+      config = {
+        theme = {
+          # colorScheme = "/home/scythe/.local/share/color-schemes/DankMatugen.colors";
+          iconTheme = "breeze-dark";
+          style = "kvantum";
+
+          font = {
+            family = "Atkinson Hyperlegible Next";
+            size = 12;
+            weight = -1;
+          };
+
+          fontFixed = {
+            family = "Atkinson Hyperlegible Mono";
+            size = 12;
+            weight = -1;
+          };
+        };
+
+        misc = {
+          singleClickActivate = false;
+          menusHaveIcons = true;
+          shortcutsForContextMenus = true;
+        };
+      };
+    };
 
     services.xserver.displayManager.gdm.enable = true;
 
@@ -39,20 +80,26 @@
 
     # Programs I use with Hyprland
     environment.systemPackages = with pkgs; [
+      adw-gtk3 # Mfw
       dconf-editor
       file-roller
       font-awesome
       fuzzel
+      pkgs-unstable.vicinae
       grimblast
-      hyprcursor
-      hypridle
-      hyprland-qtutils
-      hyprlock
-      hyprpaper
-      hyprpicker
-      hyprpolkitagent # Needs the style package to be added
+      pkgs-unstable.hyprcursor
+      pkgs-unstable.hypridle
+      pkgs-unstable.hyprlauncher
+      pkgs-unstable.hyprsysteminfo
+      pkgs-unstable.hyprsunset
+      pkgs-unstable.hyprpwcenter
+      pkgs-unstable.hyprshutdown
+      pkgs-unstable.hyprland-qtutils
+      pkgs-unstable.hyprlock
+      pkgs-unstable.hyprpaper
+      pkgs-unstable.hyprpicker
+      pkgs-unstable.hyprpolkitagent # Needs the style package to be added
       labwc
-      # mako
       networkmanagerapplet
       nomacs-qt6
       nsxiv
@@ -60,23 +107,14 @@
       overskride
       pavucontrol
       playerctl
-      qt6Packages.qt6ct
-      libsForQt5.qt5ct
-      swww # Wallpaper util
+      awww # Wallpaper util
       swappy
       waybar
       xdg-desktop-portal-termfilechooser
       xwayland-satellite
       greybird # GTK theme, mainly for Thunar
       elementary-xfce-icon-theme # Icon theme, for GTK
-      xfce.tumbler # For Thunar thumbnails
+      matugen # Color theme gen, billions must be themed
     ];
-
-    # Hypothetically speaking, symlinks the plugins to /etc/hyprplugins/lib/
-    environment.etc."hyprplugins/libhyprexpo".source =
-      "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo}/lib/libhyprexpo.so";
-    # environment.etc."hyprplugins/libhyprspace".source = "${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so";
-    environment.etc."hyprplugins/libhyprscrolling".source =
-      "${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling}/lib/libhyprscrolling.so";
   };
 }
