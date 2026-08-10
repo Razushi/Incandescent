@@ -154,13 +154,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Stuff only Scythe needs
     blender
     krita
     pika-backup
     piper # Gaming peripherals GUI
     vlc
-    pkgs-unstable.zed-editor
     opencode
     opencode-desktop
 
@@ -198,8 +196,8 @@
     # From the moment I understood the weakness of the GUI...
     bat # cat but better.
     btop # Neat system monitor.
-    dust # Dust, a rust written du replacement.
     duf # Disk usage utility, a better 'df'.
+    dust # Dust, a rust written du replacement.
     eza # Rust based ls alternative.
     fastfetch # Neofetch but written in C and maintained.
     fd # Rust alternative to the find command.
@@ -209,6 +207,7 @@
     helix
     imagemagick
     jq # Parse json in the cli.
+    nh
     parallel # GNU parallel, thread your commands.
     ripdrag # Drag n drop, mainly for Yazi.
     ripgrep # Rust based recursive line search tool.
@@ -258,9 +257,6 @@
     # Gaming
     mangohud
     vkbasalt
-
-    # Zen.... flake specialArgs
-    zenPkgs.twilight
 
     # Icon themes...
     papirus-icon-theme
