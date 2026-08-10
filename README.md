@@ -25,7 +25,8 @@
 | Launcher | Vicinae                                   |
 | Browser  | Firefox; Brave                            |
 
-To rebuild: `sudo nixos-rebuild $BUILD_OPTION --flake ~/Aeternitas/BRANCH/#HOSTNAME`
+To rebuild: `nh os $BUILD_OPTION ~/Aeternitas/BRANCH/#HOSTNAME`
+To clean garbage: `nh clean all -k 3`
 
 </details>
 
