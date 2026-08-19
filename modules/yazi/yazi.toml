@@ -1,0 +1,12 @@
+[opener]
+okular = [
+  { run = "okular %s", orphan = true, for = "unix" },
+]
+unar = [
+  { run = "unar %s", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+  { mime = "application/pdf", use = "okular" },
+]

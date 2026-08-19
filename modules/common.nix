@@ -223,7 +223,6 @@
     fdupes # Find dupe files
     _7zz-rar # This should just be a dependency smh.
     unar # The great archive tool.
-    pkgs-unstable.yazi # The Rust TUI file manager.
     rclone # Multi-function remotes for mounts/backups.
     nautilus # Gotta have it for vscode by default... 
     xdg-desktop-portal-termfilechooser # Testing it out now...
@@ -308,6 +307,21 @@
 
   # Decent enough program
   programs.gnome-disks.enable = true;
+
+  programs.yazi = {
+    enable = true;
+    plugins = {
+      inherit (pkgs-unstable.yaziPlugins) mount;
+      inherit (pkgs-unstable.yaziPlugins) full-border;
+    };
+    initLua = ./yazi/init.lua;
+    settings = {
+      yazi = lib.importTOML ./yazi/yazi.toml;
+      keymap = lib.importTOML ./yazi/keymap.toml;
+      theme = lib.importTOML ./yazi/theme.toml;
+    };
+    package = pkgs-unstable.yazi.override { _7zz = pkgs._7zz-rar; };
+  };
 
   # Yup... phone
   programs.kdeconnect.enable = true;

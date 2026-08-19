@@ -1,0 +1,109 @@
+# Plugin keymaps
+
+[[mgr.prepend_keymap]]
+on  = "M"
+run = "plugin mount"
+
+# Remapped keymaps
+
+[[mgr.prepend_keymap]]
+on = [ "f", "f" ]
+run = "search --via=fd"
+desc = "Find files by name via fd"
+
+[[mgr.prepend_keymap]]
+on = [ "f", "g" ]
+run = "search --via=rg"
+desc = "Grep files content via ripgrep"
+
+[[mgr.prepend_keymap]]
+on = [ "/" ]
+run = "filter --smart"
+desc = "Filter files"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "a" ]
+run = "sort alphabetical --reverse=no"
+desc = "Sort alphabetically"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "A" ]
+run = "sort alphabetical --reverse"
+desc = "Sort alphabetically reverse"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "n" ]
+run = "sort natural --reverse=no"
+desc = "Sort naturally"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "s" ]
+run = [ "sort size --reverse=no", "linemode size" ]
+desc = "Sort smallest first"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "S" ]
+run = [ "sort size --reverse", "linemode size" ]
+desc = "Sort largest first"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "e" ]
+run = [ "sort extension --reverse=no" ]
+desc = "Sort by extension"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "m" ]
+run = [ "sort mtime --reverse", "linemode mtime" ]
+desc = "Sort by first modified"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "M" ]
+run = [ "sort mtime --reverse=no", "linemode mtime" ]
+desc = "Sort by last modified"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "c" ]
+run = [ "sort btime --reverse=no", "linemode btime" ]
+desc = "Sort last created"
+
+[[mgr.prepend_keymap]]
+on = [ "s", "C" ]
+run = [ "sort btime --reverse=no", "linemode btime" ]
+desc = "Sort first created"
+
+[[mgr.prepend_keymap]]
+on = "z"
+run = "plugin zoxide"
+desc = "Jump to a directory via zoxide"
+
+[[mgr.prepend_keymap]]
+on = "Z"
+run = "plugin fzf"
+desc = "Jump to a file/directory via fzf"
+
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = "help"
+desc = "Command Palette"
+
+# New keymaps
+
+[[mgr.prepend_keymap]]
+on  = "<C-n>"
+run = 'shell -- ripdrag -x "$1"'
+desc = "Drag n drop"
+
+[[mgr.prepend_keymap]]
+on   = "!"
+run  = 'shell "$SHELL" --block'
+desc = "Open shell here"
+
+[[mgr.prepend_keymap]]
+on = "<C-y>"
+run = [ 'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' ]
+desc = "Copy to clipboard"
+
+[[mgr.prepend_keymap]] # Copy uri to clipboard
+on = "<S-y>"
+run = [ 'shell -- for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ]
+

@@ -1,0 +1,13 @@
+[icon]
+prepend_conds = [
+  { if = "dir", text = "", fg = "blue" },
+]
+prepend_dirs = [
+	{ name = "Desktop", text = "", fg = "blue" },
+	{ name = "Documents", text = "", fg = "blue" },
+	{ name = "Downloads", text = "", fg = "blue" },
+	{ name = "Pictures", text = "", fg = "blue" },
+	{ name = "Public", text = "", fg = "blue" },
+	{ name = "Videos", text = "", fg = "blue" },
+	# ...
+]
